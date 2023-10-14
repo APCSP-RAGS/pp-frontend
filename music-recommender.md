@@ -60,7 +60,7 @@
                 }
                 inputField.value = '';
             } else {
-                alert("Please enter a value before saving.");
+                alert("Make sure to have values.");
             }
         }
     </script>
