@@ -46,7 +46,7 @@
                 outputBox.textContent = `${inputId.replace('Input', '')}: ${inputValue}`;
                 inputField.value = '';
             } else {
-                alert("Please enter a value before saving.");
+                alert("Make sure there is a value before saving categories.");
             }
         }
     </script>
