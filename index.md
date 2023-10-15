@@ -7,6 +7,7 @@ title: RAGS Group Blog
 <html>
 
 <style>
+
 body {
       background-color: #171515;
       color: #ffffff;
@@ -55,7 +56,6 @@ body {
   margin: 0;
   box-sizing: border-box;
   display: grid;
-  place-content: center;
   font-family: system-ui, sans-serif;
 }
 
@@ -75,17 +75,10 @@ body {
 
 
 <body>
-
-<h2>About Me</h2>
-<p>We the RAGS Group are a group of coders that want to learn things such as the coding development process, how to debug, and learn different languages such as javascript and html. So far, we have learned: </p><br>
+<h2>About</h2>
+<p>In this website, we will show off the fruits of our labor: our projects. Our projects consist of</p>
 <ul>
-<li>Debugging JS Code</li>
-<li>Having HTML interact with JS code</li>
-<li>Learning JS Data Types</li>
-<li>Learning HTML formatting for front-end dev</li>
+<li> Music Composition </li>
+<li> Music Recommendations </li>
 </ul>
-<br>
-<h2>Special Shoutout</h2>
-<p>One of our favorite albums(and album covers): <br>
-Wish You Were Here - Pink Floyd <br></p>
-<a href="https://www.youtube.com/watch?v=Y9LU0utKCSw&list=OLAK5uy_mzowhqljIOba8BVGEmVkeaWeL2S_bO4bw" target="_blank"><img src="wishyouwerehere.jpg" width="300"></a>
+</body>
