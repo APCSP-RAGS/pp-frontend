@@ -8,21 +8,26 @@
     </style>
 </head>
 <body>
-    <h1>Music Generator</h1>
+    <h1>Music Recommender</h1>
     <div id="inputOutputPairs">
         <!-- Input and Output Pairs -->
         <div class="pair">
-            <label for="genreInput" class="green-text">Enter a Genre for the song:</label>
+            <label for="genreInput" class="green-text">Enter top artists:</label>
             <input type="text" id="genreInput" class="green-text">
             <button onclick="saveInput('genreInput', 'genreOutput')"><a>Save Input</a></button>
         </div>
         <div class="pair">
-            <label for="tempoInput" class="green-text">Enter a preferred tempo:</label>
+            <label for="tempoInput" class="green-text">Preferred song length:</label>
             <input type="text" id="tempoInput" class="green-text">
             <button onclick="saveInput('tempoInput', 'tempoOutput')"><a>Save Input</a></button>
         </div>
         <div class="pair">
-            <label for="lengthInput" class="green-text">Enter length of song:</label>
+            <label for="lengthInput" class="green-text">Enter music type:</label>
+            <input type="text" id="lengthInput" class="green-text">
+            <button onclick="saveInput('lengthInput', 'lengthOutput')"><a>Save Input</a></button>
+        </div>
+         <div class="pair">
+            <label for="lengthInput" class="green-text">Preferred Album:</label>
             <input type="text" id="lengthInput" class="green-text">
             <button onclick="saveInput('lengthInput', 'lengthOutput')"><a>Save Input</a></button>
         </div>
@@ -52,3 +57,5 @@
     </script>
 </body>
 </html>
+
+
