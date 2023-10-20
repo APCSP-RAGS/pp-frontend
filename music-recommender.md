@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Music Generator</title>
+    <title>Music Recommender</title>
     <style>
         .green-text {
             color: #39FF14;
@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-    <h1>Music Generator</h1>
+    <h1>Music Recommender</h1>
     <div id="inputOutputPairs">
         <!-- Input and Output Pairs -->
         <div class="pair">
