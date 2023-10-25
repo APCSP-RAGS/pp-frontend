@@ -53,7 +53,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
     const apiUrlLocal = "http://localhost:8069/api/song/"
 
-    const local = true;
+    const local = false;
 
     if (local == false) {
       fetch(apiUrl)
