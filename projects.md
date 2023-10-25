@@ -20,11 +20,11 @@ course: projects
 &nbsp;
 &nbsp;
 ## Music Recommender
-<a href="{{site.baseurl}}/music-recommender"><img src="images/music-recommender.png"></a>
+<a href="{{site.baseurl}}/data/songs"><img src="images/music-recommender.png"></a>
 
 &nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
-<a href="{{site.baseurl}}/background-image"><img src="images/music-recommender.png"></a></a>
+<a href="{{site.baseurl}}/background-image"><img src="images/music-recommender.png"></a>

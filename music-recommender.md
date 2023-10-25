@@ -9,7 +9,6 @@
 
 <!-- Body contains the contents of the Document -->
 <body>
-<<<<<<< HEAD
     <h1>Music Recommender</h1>
     <div id="inputOutputPairs">
         <!-- Input and Output Pairs -->
@@ -57,7 +56,6 @@
             }
         }
     </script>
-=======
     <table id="demo" class="table">
         <thead>
             <tr>
@@ -130,7 +128,6 @@
             </tr>
         </tbody>
     </table>
->>>>>>> a8f5001085f0084dabdaca3376bd0ecb63950b8f
 </body>
 
 <!-- Script is used to embed executable code -->
