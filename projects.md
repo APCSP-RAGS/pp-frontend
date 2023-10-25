@@ -5,20 +5,6 @@ course: projects
 ---
 
 # Projects
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-## Music Generator
-<a href="{{site.baseurl}}/music-generator"><img src="images/music-generator.jpeg"></a>
-
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 ## Music Recommender
 <a href="{{site.baseurl}}/data/songs"><img src="images/music-recommender.png"></a>
 
@@ -27,4 +13,5 @@ course: projects
 &nbsp;
 &nbsp;
 &nbsp;
-<a href="{{site.baseurl}}/background-image"><img src="images/music-recommender.png"></a>
+## Breaking Bad Simulator
+<a href="{{site.baseurl}}/background-image"><img src="images/breaking-bad-face.jpeg"></a>
