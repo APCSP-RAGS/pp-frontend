@@ -13,17 +13,21 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       width: 100%;
       border-collapse: collapse;
       margin: 20px 0;
+      white-space: pre-line;
     }
 
     table th {
       background-color: #f2f2f2;
       font-weight: bold;
+      white-space: pre-line;
     }
 
     table th, table td {
       border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
+      white-space: pre-line;
+      overflow-y: scroll;
     }
   </style>
 </head>
@@ -36,6 +40,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         <th>Song Name</th>
         <th>Artist</th>
         <th>Genre</th>
+        <th>Lyrics</th>
       </tr>
     </thead>
     <tbody id="result">
@@ -68,6 +73,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
               <td>${Song.song_name}</td>
               <td>${Song.artist}</td>
               <td>${Song.genre}</td>
+              <td>${Song.lyrics}</td>
             `;
             resultContainer.appendChild(row);
           });
@@ -93,6 +99,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
               <td>${Song.song_name}</td>
               <td>${Song.artist}</td>
               <td>${Song.genre}</td>
+              <td>${Song.lyrics}</td>
             `;
             resultContainer.appendChild(row);
           });
