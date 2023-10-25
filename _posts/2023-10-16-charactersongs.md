@@ -46,31 +46,61 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   <script>
     // Fetch data from the API
     const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+    const apiUrlLocal = "http://localhost:8069/api/song/"
 
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const resultContainer = document.getElementById("result");
+    const local = true;
 
-        data.forEach(Song => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${Song.character}</td>
-            <td>${Song.song_name}</td>
-            <td>${Song.artist}</td>
-            <td>${Song.genre}</td>
-          `;
-          resultContainer.appendChild(row);
+    if (local == false) {
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const resultContainer = document.getElementById("result");
+
+          data.forEach(Song => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${Song.character}</td>
+              <td>${Song.song_name}</td>
+              <td>${Song.artist}</td>
+              <td>${Song.genre}</td>
+            `;
+            resultContainer.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
         });
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-      });
+    } else {
+      fetch(apiUrlLocal)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const resultContainer = document.getElementById("result");
+
+          data.forEach(Song => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${Song.character}</td>
+              <td>${Song.song_name}</td>
+              <td>${Song.artist}</td>
+              <td>${Song.genre}</td>
+            `;
+            resultContainer.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
+    };
   </script>
 </body>
 </html>
