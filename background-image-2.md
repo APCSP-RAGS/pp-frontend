@@ -1,8 +1,8 @@
 ---
 layout: base
 title: Alien World - Dog and Background
-image: /images/desert.jpeg
-sprite: /images/Tumbleweed.gif
+image: /images/desert.jpg
+sprite: /images/Tumbleweed-2.webp
 ---
 
 <!-- Liquid code, run by Jekyll, used to define location of asset(s) -->
@@ -16,7 +16,7 @@ sprite: /images/Tumbleweed.gif
     }
 
     /* Style the dog canvas to be the same size as the viewport */
-    #dogCanvas {
+    #tumbleweedCanvas {
         position: absolute;
         top: 0;
         left: 0;
@@ -31,7 +31,6 @@ sprite: /images/Tumbleweed.gif
 <div id="canvasContainer">
     <div id="controls"> <!-- Controls -->
         <button id="toggleCanvasEffect">Invert</button>
-
         <input type="radio" name="animation" id="idle">
         <label for="idle">Idle</label>
         <input type="radio" name="animation" id="barking">
@@ -53,16 +52,16 @@ const backgroundImg = new Image();
 backgroundImg.src = '{{backgroundFile}}';  // Jekyll/Liquid puts filename here
 
 // Prepare Sprite Image
-const dogImg = new Image();
-dogImg.src = '{{spriteImage}}';
+const tumbleweedImg = new Image();
+tumbleweedImg.src = '{{spriteImage}}';
 
 // Prepare Canvas
 const canvas = document.getElementById("backgroundID");
 const ctx = canvas.getContext('2d');
 
 // Dog animation part
-const dogCanvas = document.createElement("canvas");
-const dogCtx = dogCanvas.getContext("2d");
+const tumbleweedCanvas = document.createElement("canvas");
+const tumbleweedCtx = tumbleweedCanvas.getContext("2d");
 
 // Prepare Window extents related to viewport
 const maxWidth = window.innerWidth;
@@ -120,22 +119,22 @@ backgroundImg.onload = function () {
     const SPRITE_FRAMES = 48;  // matches number of frames per sprite row; this code assumes each row is the same
     const SPRITE_SCALE = 1;  // controls the size of the sprite on the canvas
 
-    class Dog extends Layer {
+    class Tumbleweed extends Layer {
         constructor(image, speedRatio) {
             super(image, speedRatio);
             this.minFrame = 0;
             this.maxFrame = SPRITE_FRAMES;
             this.frameX = 0;
             this.frameY = 2;  // walking as default
-            this.dogX = canvasWidth; // Initialize the dog's x position to the right edge of the canvas
+            this.tumbleweedX = canvasWidth; // Initialize the dog's x position to the right edge of the canvas
         }
     
         update() {
             if (this.frameY == 2) {
-                this.dogX -= this.speed;  // Move the dog to the left
+                this.tumbleweedX -= this.speed;  // Move the dog to the left
                 // Check if the dog has moved off the left edge of the canvas
-                if (this.dogX < -dogCanvas.width) {
-                    this.dogX = canvasWidth; // Reset the dog's x position to the right edge
+                if (this.tumbleweedX < -tumvleweekdCanvas.width) {
+                    this.tumbleweedX = canvasWidth; // Reset the dog's x position to the right edge
                 }
             }
             // Update frameX of the object
@@ -149,15 +148,15 @@ backgroundImg.onload = function () {
         // Draw dog object
         draw() {
             // Set fixed dimensions and position for the dogCanvas
-            dogCanvas.width = SPRITE_WIDTH * SPRITE_SCALE;
-            dogCanvas.height = SPRITE_HEIGHT * SPRITE_SCALE;
-            dogCanvas.style.width = `${dogCanvas.width}px`;
-            dogCanvas.style.height = `${dogCanvas.height}px`;
-            dogCanvas.style.position = 'absolute';
-            dogCanvas.style.left = `${this.dogX}px`; // Set the dog's left position based on its x-coordinate
-            dogCanvas.style.top = `${canvasHeight}px`;
+            tumbleweedCanvas.width = SPRITE_WIDTH * SPRITE_SCALE;
+            tumbleweedCanvas.height = SPRITE_HEIGHT * SPRITE_SCALE;
+            tumbleweedCanvas.style.width = `${tumbleweedCanvas.width}px`;
+            tumbleweedCanvas.style.height = `${tumbleweedCanvas.height}px`;
+            tumbleweedCanvas.style.position = 'absolute';
+            tumbleweedCanvas.style.left = `${this.tumbleweedX}px`; // Set the dog's left position based on its x-coordinate
+            tumbleweedCanvas.style.top = `${canvasHeight}px`;
     
-            dogCtx.drawImage(
+            tumbleweedCtx.drawImage(
                 this.image,
                 this.frameX * SPRITE_WIDTH,
                 this.frameY * SPRITE_HEIGHT,
@@ -165,8 +164,8 @@ backgroundImg.onload = function () {
                 SPRITE_HEIGHT,
                 0,
                 0,
-                dogCanvas.width,
-                dogCanvas.height
+                tumbleweedCanvas.width,
+                tumbleweedCanvas.height
             );
         }
     }
@@ -174,18 +173,18 @@ backgroundImg.onload = function () {
 
     // Background object
     var backgroundObj = new Layer(backgroundImg, 0.2);
-    var dogObj = new Dog(dogImg, 0.5);
+    var tumbleweedObj = new Tumbleweed(tumbleweedImg, 0.5);
 
     // Append the dog canvas to the body
-    document.body.appendChild(dogCanvas);
+    document.body.appendChild(tumbleweedCanvas);
 
     // Animation loop
     function animation() {
         backgroundObj.update();
         backgroundObj.draw();
 
-        dogObj.update();
-        dogObj.draw();
+        tumbleweedObj.update();
+        tumbleweedObj.draw();
 
         requestAnimationFrame(animation);  // cycle animation, recursion
     }
@@ -201,10 +200,10 @@ backgroundImg.onload = function () {
     toggleCanvasEffect.addEventListener("click", function () {
         if (isFilterEnabled) {
             canvas.style.filter = "none";  // remove filter
-            dogCanvas.style.filter = "none";
+            tumbleweedCanvas.style.filter = "none";
         } else {
             canvas.style.filter = defaultFilter; // Apply the default filter value
-            dogCanvas.style.filter = defaultFilter; 
+            tumbleweedCanvas.style.filter = defaultFilter; 
         }
 
         isFilterEnabled = !isFilterEnabled;  // switch boolean value
@@ -219,13 +218,13 @@ backgroundImg.onload = function () {
             const selectedAnimation = event.target.id;
             switch (selectedAnimation) {
                 case 'idle':
-                    dogObj.frameY = 0;
+                    tumbleweedObj.frameY = 0;
                     break;
                 case 'barking':
-                    dogObj.frameY = 1;
+                    tumbleweedObj.frameY = 1;
                     break;
                 case 'walking':
-                    dogObj.frameY = 2;
+                    tumbleweedObj.frameY = 2;
                     break;
                 default:
                     break;

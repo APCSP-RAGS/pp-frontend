@@ -14,4 +14,4 @@ course: projects
 &nbsp;
 &nbsp;
 ## Breaking Bad Simulator
-<a href="{{site.baseurl}}/background-image"><img src="images/breaking-bad-face.jpeg"></a>
+<a href="{{site.baseurl}}/background-image-2"><img src="images/breaking-bad-face.jpeg"></a>
