@@ -63,7 +63,7 @@ server: stop convert
 
 
 # Convert .ipynb files to Markdown with front matter
-convert: $(MARKDOWN_FILES)
+#convert: $(MARKDOWN_FILES)
 	
 # Convert .md file, if .ipynb file is newer
 $(DESTINATION_DIRECTORY)/%_IPYNB_2_.md: _notebooks/%.ipynb
