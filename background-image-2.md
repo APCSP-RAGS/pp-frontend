@@ -92,84 +92,12 @@ backgroundImg.onload = function () {
     // Game speed is a common game variable
     var gameSpeed = 2;
 
-    // Layer is set up to support Parallax, multiple layers
-    class Layer {
-        constructor(image, speedRatio) {
-            this.x = 0;
-            this.y = 0;
-            this.width = WIDTH;
-            this.height = HEIGHT;
-            this.image = image;
-            this.speedRatio = speedRatio;
-            this.speed = gameSpeed * this.speedRatio;
-            this.frame = 0;
-        }
-        update() {
-            this.x = (this.x - this.speed) % this.width;
-        }
-        draw() {
-            ctx.drawImage(this.image, this.x, this.y);
-            ctx.drawImage(this.image, this.x + this.width, this.y);
-        }
-    }
-
     // Setup Dog sprite constraints
     const SPRITE_WIDTH = 160;  // matches sprite pixel width
     const SPRITE_HEIGHT = 144; // matches sprite pixel height
     const SPRITE_FRAMES = 48;  // matches number of frames per sprite row; this code assumes each row is the same
     const SPRITE_SCALE = 1;  // controls the size of the sprite on the canvas
 
-    class Tumbleweed extends Layer {
-        constructor(image, speedRatio) {
-            super(image, speedRatio);
-            this.minFrame = 0;
-            this.maxFrame = SPRITE_FRAMES;
-            this.frameX = 0;
-            this.frameY = 2;  // walking as default
-            this.tumbleweedX = canvasWidth; // Initialize the dog's x position to the right edge of the canvas
-        }
-    
-        update() {
-            if (this.frameY == 2) {
-                this.tumbleweedX -= this.speed;  // Move the dog to the left
-                // Check if the dog has moved off the left edge of the canvas
-                if (this.tumbleweedX < -tumvleweekdCanvas.width) {
-                    this.tumbleweedX = canvasWidth; // Reset the dog's x position to the right edge
-                }
-            }
-            // Update frameX of the object
-            if (this.frameX < this.maxFrame) {
-                this.frameX++;
-            } else {
-                this.frameX = 0;
-            }
-        }
-    
-        // Draw dog object
-        draw() {
-            // Set fixed dimensions and position for the dogCanvas
-            tumbleweedCanvas.width = SPRITE_WIDTH * SPRITE_SCALE;
-            tumbleweedCanvas.height = SPRITE_HEIGHT * SPRITE_SCALE;
-            tumbleweedCanvas.style.width = `${tumbleweedCanvas.width}px`;
-            tumbleweedCanvas.style.height = `${tumbleweedCanvas.height}px`;
-            tumbleweedCanvas.style.position = 'absolute';
-            tumbleweedCanvas.style.left = `${this.tumbleweedX}px`; // Set the dog's left position based on its x-coordinate
-            tumbleweedCanvas.style.top = `${canvasHeight}px`;
-    
-            tumbleweedCtx.drawImage(
-                this.image,
-                this.frameX * SPRITE_WIDTH,
-                this.frameY * SPRITE_HEIGHT,
-                SPRITE_WIDTH,
-                SPRITE_HEIGHT,
-                0,
-                0,
-                tumbleweedCanvas.width,
-                tumbleweedCanvas.height
-            );
-        }
-    }
-    
 
     // Background object
     var backgroundObj = new Layer(backgroundImg, 0.2);
