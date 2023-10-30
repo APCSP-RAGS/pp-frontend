@@ -82,3 +82,27 @@ body {
 <li> Character Playlists </li>
 </ul>
 </body>
+
+<img id="imageElement" src="" alt="Image Placeholder">
+    
+<script>
+    // Get the image element by its id
+    const imageElement = document.getElementById("imageElement");
+    
+    // Get the current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+    const dayOfWeek = new Date().getDay();
+    
+    // Array of image URLs, one for each day of the week (0-6)
+    const imageUrls = [
+        "https://awsrags-flask.stu.nighthawkcodingsociety.com/memes/sunday.jpg",
+        "https://awsrags-flask.stu.nighthawkcodingsociety.com/memes/monday.jpg",
+        "https://awsrags-flask.stu.nighthawkcodingsociety.com/memes/tuesday.jpg",
+        "https://awsrags-flask.stu.nighthawkcodingsociety.com/memes/wednesday.jpg",
+        "https://awsrags-flask.stu.nighthawkcodingsociety.com/memes/thursday.jpg",
+        "https://awsrags-flask.stu.nighthawkcodingsociety.com/memes/friday.jpg",
+        "https://awsrags-flask.stu.nighthawkcodingsociety.com/memes/saturday.jpg"
+    ];
+    
+    // Set the image source URL based on the current day
+    imageElement.src = imageUrls[dayOfWeek];
+</script>
