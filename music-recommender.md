@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+---
+layout: default
+title: Character Playlists
+---
+
 <html>
 <head>
     <!-- load jQuery and DataTables output style and scripts -->

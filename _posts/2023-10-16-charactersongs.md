@@ -1,6 +1,6 @@
 ---
 title: Songs for Breaking Bad Characters
-layout: base
+layout: default
 description: Uses GET requests to retrieve data from a custom API using SQLite and served on our Flask backend.
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
@@ -26,7 +26,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       align-items: center;
       height: 100vh;
       overflow: auto;
-      padding: 10px;
+      padding: 10px;  
+      width: 700px;
       transition: background-color 0.5s;
     }
 
@@ -180,7 +181,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
             <td>${Song.artist}</td>
             <td>${Song.genre}</td>
             <td class="lyrics">${Song.lyrics}</td>
-            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+            <td><button style="background-color: white" onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
           `;
           resultContainer.appendChild(row);
         });

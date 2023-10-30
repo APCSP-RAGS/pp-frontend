@@ -79,6 +79,6 @@ body {
 <p>In this website, we will show off the fruits of our labor: our projects. Our projects consist of</p>
 <ul>
 <li> Music Composition </li>
-<li> Music Recommendations </li>
+<li> Character Playlists </li>
 </ul>
 </body>
