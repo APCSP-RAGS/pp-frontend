@@ -16,6 +16,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       font-family: 'Courier New', monospace;
       overflow: hidden;
       margin: 0;
+      transition: background-color 0.5s;
     }
 
     /* Center the table horizontally */
@@ -26,6 +27,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       height: 100vh;
       overflow: auto;
       padding: 10px;
+      transition: background-color 0.5s;
     }
 
     .table-container {
@@ -33,12 +35,14 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 20px;
       overflow: auto;
       border-radius: 10px;
+      transition: background-color 0.5s;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       white-space: pre-line;
+      border-radius: 10px;
     }
 
     table th {
@@ -57,8 +61,10 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     .lyrics {
+      display: none;
       max-height: 200px;
       overflow: auto;
+      border-radius: 10px;
     }
 
     /* Add a hacker-inspired style */
@@ -69,6 +75,11 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
     .hacker-theme a {
       color: #0f0;
+    }
+
+    /* YouTube ambient mode style */
+    .ambient-mode {
+      background-color: #212121;
     }
   </style>
 </head>
@@ -105,6 +116,23 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
     }
 
+    // Function to toggle ambient mode
+    function toggleAmbientMode() {
+      const body = document.body;
+      const container = document.querySelector('.container');
+      const tableContainer = document.querySelector('.table-container');
+
+      if (body.classList.contains('ambient-mode')) {
+        body.classList.remove('ambient-mode');
+        container.classList.remove('ambient-mode');
+        tableContainer.classList.remove('ambient-mode');
+      } else {
+        body.classList.add('ambient-mode');
+        container.classList.add('ambient-mode');
+        tableContainer.classList.add('ambient-mode');
+      }
+    }
+
     // Fetch data from the API
     const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
 
@@ -135,5 +163,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         console.error('Error fetching data:', error);
       });
   </script>
+  <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
+
