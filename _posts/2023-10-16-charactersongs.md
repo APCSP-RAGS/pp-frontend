@@ -6,7 +6,6 @@ permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
 
-
 <html>
 <head>
   <style>
@@ -15,18 +14,25 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       background-color: #000;
       color: #0f0;
       font-family: 'Courier New', monospace;
+      overflow: hidden;
+      margin: 0;
     }
 
     /* Center the table horizontally */
     .container {
       display: flex;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: auto;
+      padding: 10px;
     }
 
     .table-container {
       background-color: #333;
       border-radius: 10px;
       padding: 20px;
+      overflow: auto;
     }
 
     table {
@@ -43,7 +49,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     table th, table td {
-      border: 1px solid #333;
+      border: 1px solid #666;
       padding: 8px;
       text-align: left;
       border-radius: 10px;
