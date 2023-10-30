@@ -1,6 +1,6 @@
 ---
 title: Songs for Breaking Bad Characters
-layout: base
+layout: default
 description: Uses GET requests to retrieve data from a custom API using SQLite and served on our Flask backend.
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
@@ -24,7 +24,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       align-items: center;
       height: 100vh;
       overflow: auto;
-      padding: 10px;
+      padding: 10px;  
+      width: 800px;
       transition: background-color 0.5s;
     }
 
@@ -178,7 +179,66 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   </div>
 
   <script>
+<<<<<<< HEAD
     // JavaScript code here
+=======
+    // Function to toggle lyrics visibility
+    function toggleLyrics(row) {
+      const lyricsCell = row.querySelector('.lyrics');
+      if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
+        lyricsCell.style.display = 'block';
+      } else {
+        lyricsCell.style.display = 'none';
+      }
+    }
+
+    // Function to toggle ambient mode
+    function toggleAmbientMode() {
+      const body = document.body;
+      const container = document.querySelector('.container');
+      const tableContainer = document.querySelector('.table-container');
+
+      if (body.classList.contains('ambient-mode')) {
+        body.classList.remove('ambient-mode');
+        container.classList.remove('ambient-mode');
+        tableContainer.classList.remove('ambient-mode');
+      } else {
+        body.classList.add('ambient-mode');
+        container.classList.add('ambient-mode');
+        tableContainer.classList.add('ambient-mode');
+      }
+    }
+
+    // Fetch data from the API
+    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const resultContainer = document.getElementById("result");
+
+        data.forEach(Song => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${Song.character}</td>
+            <td>${Song.song_name}</td>
+            <td>${Song.artist}</td>
+            <td>${Song.genre}</td>
+            <td class="lyrics" style="font-size: 12px;">${Song.lyrics}</td>
+            <td><button style="background-color: white; font-family: 'Courier New', monospace; font-weight: bold;" onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+          `;
+          resultContainer.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+>>>>>>> 832b7c6cdb7827a0ccb989c7c270843dc0333cf5
   </script>
 </body>
 </html>
