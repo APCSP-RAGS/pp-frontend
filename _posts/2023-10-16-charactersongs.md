@@ -180,7 +180,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     // Fetch data from the API
-    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/songs/";
     const apiUrlLocal = "http://localhost:8069/api/song/";
 
     // Choose the appropriate API URL based on your environment
