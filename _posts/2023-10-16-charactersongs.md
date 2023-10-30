@@ -9,7 +9,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 <html>
 <head>
   <style>
-    /* Style for the table */
     body {
       background-color: #000;
       color: #0f0;
@@ -19,7 +18,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       transition: background-color 0.5s;
     }
 
-    /* Center the table horizontally */
     .container {
       display: flex;
       justify-content: center;
@@ -107,11 +105,59 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     .ambient-mode {
       background-color: #212121;
     }
+
+    /* Style for input fields and buttons */
+    label {
+      color: #0f0;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      background-color: #000;
+      color: #0f0;
+      border: 1px solid #0f0;
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    button {
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #00f;
+    }
   </style>
 </head>
 <body class="hacker-theme">
   <div class="container">
     <div class="table-container">
+      <!-- Input options -->
+      <div>
+        <label for="character">Character:</label>
+        <input type="text" id="character">
+      </div>
+      <div>
+        <label for="songName">Song Name:</label>
+        <input type="text" id="songName">
+      </div>
+      <div>
+        <label for="artist">Artist:</label>
+        <input type="text" id="artist">
+      </div>
+      <div>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre">
+      </div>
+      <button onclick="fetchData()">Search</button>
+      <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
       <!-- HTML table for displaying data -->
       <table class="hacker-theme">
         <thead>
@@ -132,63 +178,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   </div>
 
   <script>
-    // Function to toggle lyrics visibility
-    function toggleLyrics(row) {
-      const lyricsCell = row.querySelector('.lyrics');
-      if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
-        lyricsCell.style.display = 'block';
-      } else {
-        lyricsCell.style.display = 'none';
-      }
-    }
-
-    // Function to toggle ambient mode
-    function toggleAmbientMode() {
-      const body = document.body;
-      const container = document.querySelector('.container');
-      const tableContainer = document.querySelector('.table-container');
-
-      if (body.classList.contains('ambient-mode')) {
-        body.classList.remove('ambient-mode');
-        container.classList.remove('ambient-mode');
-        tableContainer.classList.remove('ambient-mode');
-      } else {
-        body.classList.add('ambient-mode');
-        container.classList.add('ambient-mode');
-        tableContainer.classList.add('ambient-mode');
-      }
-    }
-
-    // Fetch data from the API
-    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
-
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const resultContainer = document.getElementById("result");
-
-        data.forEach(Song => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${Song.character}</td>
-            <td>${Song.song_name}</td>
-            <td>${Song.artist}</td>
-            <td>${Song.genre}</td>
-            <td class="lyrics">${Song.lyrics}</td>
-            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
-          `;
-          resultContainer.appendChild(row);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+    // JavaScript code here
   </script>
-  <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
