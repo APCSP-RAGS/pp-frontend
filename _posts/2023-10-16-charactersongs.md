@@ -5,6 +5,7 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
+
 <html>
 <head>
   <style>
@@ -14,6 +15,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       border-collapse: collapse;
       margin: 20px 0;
       white-space: pre-line;
+      display: block;
     }
 
     table th {
@@ -27,6 +29,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 8px;
       text-align: left;
       white-space: pre-line;
+      height: 70px;
       overflow-y: scroll;
     }
   </style>
