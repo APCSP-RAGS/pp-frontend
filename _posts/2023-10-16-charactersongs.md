@@ -6,6 +6,7 @@ permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
 
+
 <html>
 <head>
   <style>
@@ -29,8 +30,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     .table-container {
-      background-color: #333;
-      border-radius: 10px;
+      background-color: #000;
       padding: 20px;
       overflow: auto;
     }
@@ -42,14 +42,14 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     table th {
-      background-color: #333;
+      background-color: #000;
       color: #0f0;
       font-weight: bold;
       white-space: pre-line;
     }
 
     table th, table td {
-      border: 1px solid #666;
+      border: 1px solid #333;
       padding: 8px;
       text-align: left;
       border-radius: 10px;
@@ -57,11 +57,13 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
     .lyrics {
       display: none;
+      max-height: 200px;
+      overflow: auto;
     }
 
     /* Add a hacker-inspired style */
     .hacker-theme {
-      background-color: #333;
+      background-color: #000;
       color: #0f0;
     }
 
