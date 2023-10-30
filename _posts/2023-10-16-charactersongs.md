@@ -1,11 +1,4 @@
----
-title: Songs for Breaking Bad Characters
-layout: base
-description: Uses GET requests to retrieve data from a custom API using SQLite and served on our Flask backend.
-permalink: /data/songs
-tags: [javascript, fetch, dom, getElementID, appendChild]
----
-
+<!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -20,6 +13,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     .container {
       display: flex;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     /* Style for the table */
@@ -103,7 +98,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
-          throw an Error('Network response was not ok');
+          throw new Error('Network response was not ok');
         }
         return response.json();
       })
