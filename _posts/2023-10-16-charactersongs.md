@@ -5,11 +5,17 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
-<!DOCTYPE html>
+
 <html>
 <head>
   <style>
     /* Style for the table */
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -19,24 +25,39 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     table th {
-      background-color: #f2f2f2;
+      background-color: #333;
+      color: #0f0;
       font-weight: bold;
       white-space: pre-line;
     }
 
     table th, table td {
-      border: 1px solid #ddd;
+      border: 1px solid #333;
       padding: 8px;
       text-align: left;
       white-space: pre-line;
       height: 70px;
       overflow-y: scroll;
     }
+
+    .lyrics {
+      display: none;
+    }
+
+    /* Add a hacker-inspired style */
+    .hacker-theme {
+      background-color: #000;
+      color: #0f0;
+    }
+
+    .hacker-theme a {
+      color: #0f0;
+    }
   </style>
 </head>
-<body>
+<body class="hacker-theme">
   <!-- HTML table for displaying data -->
-  <table>
+  <table class="hacker-theme">
     <thead>
       <tr>
         <th>Character</th>
@@ -55,8 +76,12 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   <script>
     // Function to toggle lyrics visibility
     function toggleLyrics(row) {
-      const lyricsCell = row.querySelector('.lyrics-cell');
-      lyricsCell.classList.toggle('show-lyrics');
+      const lyricsCell = row.querySelector('.lyrics');
+      if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
+        lyricsCell.style.display = 'block';
+      } else {
+        lyricsCell.style.display = 'none';
+      }
     }
 
     // Fetch data from the API
@@ -79,7 +104,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
             <td>${Song.song_name}</td>
             <td>${Song.artist}</td>
             <td>${Song.genre}</td>
-            <td class="lyrics-cell">${Song.lyrics}</td>
+            <td class="lyrics">${Song.lyrics}</td>
             <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
           `;
           resultContainer.appendChild(row);
