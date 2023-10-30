@@ -6,7 +6,6 @@ permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
 
-
 <html>
 <head>
   <style>
@@ -33,6 +32,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       background-color: #000;
       padding: 20px;
       overflow: auto;
+      border-radius: 10px;
     }
 
     table {
@@ -53,6 +53,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 8px;
       text-align: left;
       border-radius: 10px;
+      white-space: pre-line;
     }
 
     .lyrics {
@@ -111,7 +112,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw an Error('Network response was not ok');
         }
         return response.json();
       })
