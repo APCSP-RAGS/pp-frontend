@@ -32,12 +32,13 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     .table-container {
-      background-color: #000;
-      padding: 20px;
-      overflow: auto;
-      border-radius: 10px;
-      transition: background-color 0.5s;
-    }
+  background-color: #000;
+  padding: 20px;
+  overflow: auto;
+  border-radius: 10px;
+  box-shadow: none; /* Remove the box-shadow */
+  transition: background-color 0.5s;
+}
 
     table {
       width: 100%;
