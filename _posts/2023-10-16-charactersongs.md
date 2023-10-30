@@ -35,12 +35,12 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 20px;
       overflow: auto;
       border-radius: 10px;
-      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0; /* Ring light effect */
-      animation: ring-light-dance 5s linear infinite, music 1s linear alternate, rgb-dance 5s linear infinite;
+      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0; /* Default ring light effect */
+      animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
       transition: background-color 0.5s, box-shadow 0.5s;
     }
 
-    @keyframes ring-light-dance {
+    @keyframes ring-light {
       0%, 100% {
         box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
       }
@@ -61,24 +61,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
       100% {
         transform: translateX(10px);
-      }
-    }
-
-    @keyframes rgb-dance {
-      0% {
-        background-color: #f00;
-      }
-      25% {
-        background-color: #0f0;
-      }
-      50% {
-        background-color: #00f;
-      }
-      75% {
-        background-color: #f0f;
-      }
-      100% {
-        background-color: #0ff;
       }
     }
 
@@ -154,7 +136,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     function toggleLyrics(row) {
       const lyricsCell = row.querySelector('.lyrics');
       if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
-        lyricsCell.style display = 'block';
+        lyricsCell.style.display = 'block';
       } else {
         lyricsCell.style.display = 'none';
       }
