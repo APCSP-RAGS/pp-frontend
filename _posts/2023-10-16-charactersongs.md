@@ -6,7 +6,6 @@ permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
 
-
 <html>
 <head>
   <style>
@@ -32,13 +31,35 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     .table-container {
-  background-color: #000;
-  padding: 20px;
-  overflow: auto;
-  border-radius: 10px;
-  box-shadow: none; /* Remove the box-shadow */
-  transition: background-color 0.5s;
-}
+      background-color: #000;
+      padding: 20px;
+      overflow: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0; /* Ring light effect */
+      animation: wave 3s ease-in-out infinite, music 1s linear alternate;
+      transition: background-color 0.5s, box-shadow 0.5s;
+    }
+
+    @keyframes wave {
+      0% {
+        box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
+      }
+      50% {
+        box-shadow: 0 0 15px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
+      }
+      100% {
+        box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
+      }
+    }
+
+    @keyframes music {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(10px);
+      }
+    }
 
     table {
       width: 100%;
@@ -131,4 +152,40 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       } else {
         body.classList.add('ambient-mode');
         container.classList.add('ambient-mode');
-        tableContainer.classList.add('ambient-mode
+        tableContainer.classList.add('ambient-mode');
+      }
+    }
+
+    // Fetch data from the API
+    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const resultContainer = document.getElementById("result");
+
+        data.forEach(Song => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${Song.character}</td>
+            <td>${Song.song_name}</td>
+            <td>${Song.artist}</td>
+            <td>${Song.genre}</td>
+            <td class="lyrics">${Song.lyrics}</td>
+            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+          `;
+          resultContainer.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  </script>
+  <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
+</body>
+</html>
