@@ -5,7 +5,6 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
-
 <html>
 <head>
   <style>
@@ -38,6 +37,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0; /* Default ring light effect */
       animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
       transition: background-color 0.5s, box-shadow 0.5s;
+      display: block; /* Display the table */
     }
 
     @keyframes ring-light {
@@ -165,7 +165,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
-          throw an Error('Network response was not ok');
+          throw new Error('Network response was not ok');
         }
         return response.json();
       })
