@@ -1,4 +1,3 @@
-<!-- ---
 title: Songs for Breaking Bad Characters
 layout: base
 description: Uses GET requests to retrieve data from a custom API using SQLite and served on our Flask backend.
