@@ -1,5 +1,5 @@
-class Layer {
-    constructor(image, speedRatio) {
+export class Layer {
+    constructor(image, speedRatio, WIDTH, HEIGHT, gameSpeed) {
         this.x = 0;
         this.y = 0;
         this.width = WIDTH;
@@ -12,7 +12,7 @@ class Layer {
     update() {
         this.x = (this.x - this.speed) % this.width;
     }
-    draw() {
+    draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y);
         ctx.drawImage(this.image, this.x + this.width, this.y);
     }

@@ -38,12 +38,16 @@ sprite: /images/Tumbleweed-2.webp
         <input type="radio" name="animation" id="walking" checked>
         <label for="walking">Walking</label>
     </div>
-    <canvas id="backgroundID">
+    <canvas id="backgroundCanvas">
         <img id="backgroundImage" src="{{backgroundFile}}">
     </canvas>
+
 </div>
 
-<script>
+<script type="module">
+import { Layer } from '../pp-frontend/classes/Layer.js';
+import { Tumbleweed } from '../pp-frontend/classes/Tumbleweed.js';
+
 /* Background part of Game
  * scrolling 
 */
@@ -56,7 +60,7 @@ const tumbleweedImg = new Image();
 tumbleweedImg.src = '{{spriteImage}}';
 
 // Prepare Canvas
-const canvas = document.getElementById("backgroundID");
+const canvas = document.getElementById("backgroundCanvas");
 const ctx = canvas.getContext('2d');
 
 // Dog animation part
@@ -100,8 +104,8 @@ backgroundImg.onload = function () {
 
 
     // Background object
-    var backgroundObj = new Layer(backgroundImg, 0.2);
-    var tumbleweedObj = new Tumbleweed(tumbleweedImg, 0.5);
+    var backgroundObj = new Layer(backgroundImg, 0.2, WIDTH, HEIGHT, gameSpeed);
+    var tumbleweedObj = new Tumbleweed(tumbleweedImg, 0.5, SPRITE_FRAMES, canvasWidth);
 
     // Append the dog canvas to the body
     document.body.appendChild(tumbleweedCanvas);
@@ -109,10 +113,10 @@ backgroundImg.onload = function () {
     // Animation loop
     function animation() {
         backgroundObj.update();
-        backgroundObj.draw();
+        backgroundObj.draw(ctx);
 
-        tumbleweedObj.update();
-        tumbleweedObj.draw();
+        tumbleweedObj.update(canvasWidth);
+        tumbleweedObj.draw(SPRITE_WIDTH, SPRITE_HEIGHT, SPRITE_SCALE, canvasHeight);
 
         requestAnimationFrame(animation);  // cycle animation, recursion
     }
@@ -160,4 +164,4 @@ backgroundImg.onload = function () {
         }
     });
 };
-</script>
+</script>;
