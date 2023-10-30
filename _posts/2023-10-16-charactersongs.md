@@ -5,7 +5,7 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
-
+<!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -44,6 +44,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         <th>Artist</th>
         <th>Genre</th>
         <th>Lyrics</th>
+        <th>Lyrics Toggle</th>
       </tr>
     </thead>
     <tbody id="result">
@@ -52,65 +53,41 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   </table>
 
   <script>
+    // Function to toggle lyrics visibility
+    function toggleLyrics(row) {
+      const lyricsCell = row.querySelector('.lyrics-cell');
+      lyricsCell.classList.toggle('show-lyrics');
+    }
+
     // Fetch data from the API
     const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
-    const apiUrlLocal = "http://localhost:8069/api/song/"
 
-    const local = false;
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const resultContainer = document.getElementById("result");
 
-    if (local == false) {
-      fetch(apiUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          const resultContainer = document.getElementById("result");
-
-          data.forEach(Song => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-              <td>${Song.character}</td>
-              <td>${Song.song_name}</td>
-              <td>${Song.artist}</td>
-              <td>${Song.genre}</td>
-              <td>${Song.lyrics}</td>
-            `;
-            resultContainer.appendChild(row);
-          });
-        })
-        .catch(error => {
-          console.error("Error fetching data:", error);
+        data.forEach(Song => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${Song.character}</td>
+            <td>${Song.song_name}</td>
+            <td>${Song.artist}</td>
+            <td>${Song.genre}</td>
+            <td class="lyrics-cell">${Song.lyrics}</td>
+            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+          `;
+          resultContainer.appendChild(row);
         });
-    } else {
-      fetch(apiUrlLocal)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          const resultContainer = document.getElementById("result");
-
-          data.forEach(Song => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-              <td>${Song.character}</td>
-              <td>${Song.song_name}</td>
-              <td>${Song.artist}</td>
-              <td>${Song.genre}</td>
-              <td>${Song.lyrics}</td>
-            `;
-            resultContainer.appendChild(row);
-          });
-        })
-        .catch(error => {
-          console.error("Error fetching data:", error);
-        });
-    };
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
   </script>
 </body>
 </html>
