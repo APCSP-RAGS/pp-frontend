@@ -1,8 +1,16 @@
-<!DOCTYPE html>
+---
+title: Songs for Breaking Bad Characters
+layout: base
+description: Uses GET requests to retrieve data from a custom API using SQLite and served on our Flask backend.
+permalink: /data/songs
+tags: [javascript, fetch, dom, getElementID, appendChild]
+---
+
+
 <html>
 <head>
   <style>
-    /* Global Styles */
+    /* Style for the table */
     body {
       background-color: #000;
       color: #0f0;
@@ -13,11 +21,8 @@
     .container {
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
     }
 
-    /* Style for the table */
     .table-container {
       background-color: #333;
       border-radius: 10px;
@@ -38,7 +43,7 @@
     }
 
     table th, table td {
-      border: none; /* Remove borders from cells */
+      border: 1px solid #333;
       padding: 8px;
       text-align: left;
       border-radius: 10px;
