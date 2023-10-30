@@ -27,7 +27,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       height: 100vh;
       overflow: auto;
       padding: 10px;  
-      width: 700px;
+      width: 800px;
       transition: background-color 0.5s;
     }
 
@@ -180,8 +180,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
             <td>${Song.song_name}</td>
             <td>${Song.artist}</td>
             <td>${Song.genre}</td>
-            <td class="lyrics">${Song.lyrics}</td>
-            <td><button style="background-color: white" onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+            <td class="lyrics" style="font-size: 12px;">${Song.lyrics}</td>
+            <td><button style="background-color: white; font-family: 'Courier New', monospace; font-weight: bold;" onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
           `;
           resultContainer.appendChild(row);
         });
