@@ -5,7 +5,6 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
-
 <html>
 <head>
   <style>
@@ -165,7 +164,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw an Error('Network response was not ok');
         }
         return response.json();
       })
