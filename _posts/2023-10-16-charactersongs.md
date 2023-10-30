@@ -9,7 +9,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 <html>
 <head>
   <style>
-    body {
+        body {
       background-color: #000;
       color: #0f0;
       font-family: 'Courier New', monospace;
@@ -142,103 +142,84 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     <div class="table-container">
       <!-- Input options -->
       <div>
-        <label for="character">Character:</label>
-        <input type="text" id="character">
+        <h2>Add New Song Data</h2>
+        <div>
+          <label for="newCharacter">Character:</label>
+          <input type="text" id="newCharacter">
+        </div>
+        <div>
+          <label for="newSongName">Song Name:</label>
+          <input type="text" id="newSongName">
+        </div>
+        <div>
+          <label for "newArtist">Artist:</label>
+          <input type="text" id="newArtist">
+        </div>
+        <div>
+          <label for="newGenre">Genre:</label>
+          <input type="text" id="newGenre">
+        </div>
+        <div>
+          <label for="newLyrics">Lyrics:</label>
+          <textarea id="newLyrics" rows="4"></textarea>
+        </div>
+        <button onclick="addNewSong()">Add Song</button>
       </div>
-      <div>
-        <label for="songName">Song Name:</label>
-        <input type="text" id="songName">
-      </div>
-      <div>
-        <label for="artist">Artist:</label>
-        <input type="text" id="artist">
-      </div>
-      <div>
-        <label for="genre">Genre:</label>
-        <input type="text" id="genre">
-      </div>
-      <button onclick="fetchData()">Search</button>
-      <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
+      
       <!-- HTML table for displaying data -->
       <table class="hacker-theme">
-        <thead>
-          <tr>
-            <th>Character</th>
-            <th>Song Name</th>
-            <th>Artist</th>
-            <th>Genre</th>
-            <th>Lyrics</th>
-            <th>Lyrics Toggle</th>
-          </tr>
-        </thead>
-        <tbody id="result">
-          <!-- Data will be populated here -->
-        </tbody>
+        <!-- ... (Rest of the HTML content) ... -->
       </table>
     </div>
   </div>
 
   <script>
-<<<<<<< HEAD
-    // JavaScript code here
-=======
-    // Function to toggle lyrics visibility
-    function toggleLyrics(row) {
-      const lyricsCell = row.querySelector('.lyrics');
-      if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
-        lyricsCell.style.display = 'block';
-      } else {
-        lyricsCell.style.display = 'none';
-      }
-    }
+    // Function to add new song data to the backend
+    function addNewSong() {
+      const newCharacter = document.getElementById("newCharacter").value;
+      const newSongName = document.getElementById("newSongName").value;
+      const newArtist = document.getElementById("newArtist").value;
+      const newGenre = document.getElementById("newGenre").value;
+      const newLyrics = document.getElementById("newLyrics").value;
 
-    // Function to toggle ambient mode
-    function toggleAmbientMode() {
-      const body = document.body;
-      const container = document.querySelector('.container');
-      const tableContainer = document.querySelector('.table-container');
+      const apiUrl = "/api/song"; // Assumes the backend is running on the same domain
 
-      if (body.classList.contains('ambient-mode')) {
-        body.classList.remove('ambient-mode');
-        container.classList.remove('ambient-mode');
-        tableContainer.classList.remove('ambient-mode');
-      } else {
-        body.classList.add('ambient-mode');
-        container.classList.add('ambient-mode');
-        tableContainer.classList.add('ambient-mode');
-      }
-    }
-
-    // Fetch data from the API
-    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
-
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          character: newCharacter,
+          song_name: newSongName,
+          artist: newArtist,
+          genre: newGenre,
+          lyrics: newLyrics
+        })
       })
-      .then(data => {
-        const resultContainer = document.getElementById("result");
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to add new song');
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Clear input fields after adding
+          document.getElementById("newCharacter").value = "";
+          document.getElementById("newSongName").value = "";
+          document.getElementById("newArtist").value = "";
+          document.getElementById("newGenre").value = "";
+          document.getElementById("newLyrics").value = "";
 
-        data.forEach(Song => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${Song.character}</td>
-            <td>${Song.song_name}</td>
-            <td>${Song.artist}</td>
-            <td>${Song.genre}</td>
-            <td class="lyrics" style="font-size: 12px;">${Song.lyrics}</td>
-            <td><button style="background-color: white; font-family: 'Courier New', monospace; font-weight: bold;" onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
-          `;
-          resultContainer.appendChild(row);
+          // You can update the UI or perform any other necessary actions
+        })
+        .catch(error => {
+          console.error('Error adding new song:', error);
         });
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
->>>>>>> 832b7c6cdb7827a0ccb989c7c270843dc0333cf5
+    }
+
+    // ... (The rest of the JavaScript code) ...
   </script>
 </body>
 </html>
+
