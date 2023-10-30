@@ -6,6 +6,7 @@ permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
 
+
 <html>
 <head>
   <style>
@@ -35,8 +36,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 20px;
       overflow: auto;
       border-radius: 10px;
-      box-shadow: 0 0 15px #00f, 0 0 30px #00f, 0 0 45px #00f;
-      transition: background-color 0.5s, box-shadow 0.5s;
+      transition: background-color 0.5s;
     }
 
     table {
@@ -113,7 +113,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
         lyricsCell.style.display = 'block';
       } else {
-        lyricsCell.style display = 'none';
+        lyricsCell.style.display = 'none';
       }
     }
 
@@ -130,40 +130,4 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       } else {
         body.classList.add('ambient-mode');
         container.classList.add('ambient-mode');
-        tableContainer.classList.add('ambient-mode');
-      }
-    }
-
-    // Fetch data from the API
-    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
-
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const resultContainer = document.getElementById("result");
-
-        data.forEach(Song => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${Song.character}</td>
-            <td>${Song.song_name}</td>
-            <td>${Song.artist}</td>
-            <td>${Song.genre}</td>
-            <td class="lyrics">${Song.lyrics}</td>
-            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
-          `;
-          resultContainer.appendChild(row);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  </script>
-  <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
-</body>
-</html>
+        tableContainer.classList.add('ambient-mode
