@@ -9,19 +9,30 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 <html>
 <head>
   <style>
-    /* Style for the table */
+    /* Global Styles */
     body {
       background-color: #000;
       color: #0f0;
       font-family: 'Courier New', monospace;
     }
 
+    /* Center the table horizontally */
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Style for the table */
+    .table-container {
+      background-color: #333;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
       white-space: pre-line;
-      display: block;
     }
 
     table th {
@@ -32,12 +43,10 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     table th, table td {
-      border: 1px solid #333;
+      border: none; /* Remove borders from cells */
       padding: 8px;
       text-align: left;
-      white-space: pre-line;
-      height: 70px;
-      overflow-y: scroll;
+      border-radius: 10px;
     }
 
     .lyrics {
@@ -46,7 +55,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
     /* Add a hacker-inspired style */
     .hacker-theme {
-      background-color: #000;
+      background-color: #333;
       color: #0f0;
     }
 
@@ -56,22 +65,26 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   </style>
 </head>
 <body class="hacker-theme">
-  <!-- HTML table for displaying data -->
-  <table class="hacker-theme">
-    <thead>
-      <tr>
-        <th>Character</th>
-        <th>Song Name</th>
-        <th>Artist</th>
-        <th>Genre</th>
-        <th>Lyrics</th>
-        <th>Lyrics Toggle</th>
-      </tr>
-    </thead>
-    <tbody id="result">
-      <!-- Data will be populated here -->
-    </tbody>
-  </table>
+  <div class="container">
+    <div class="table-container">
+      <!-- HTML table for displaying data -->
+      <table class="hacker-theme">
+        <thead>
+          <tr>
+            <th>Character</th>
+            <th>Song Name</th>
+            <th>Artist</th>
+            <th>Genre</th>
+            <th>Lyrics</th>
+            <th>Lyrics Toggle</th>
+          </tr>
+        </thead>
+        <tbody id="result">
+          <!-- Data will be populated here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <script>
     // Function to toggle lyrics visibility
@@ -90,7 +103,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw an Error('Network response was not ok');
         }
         return response.json();
       })
@@ -111,7 +124,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         });
       })
       .catch(error => {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       });
   </script>
 </body>
