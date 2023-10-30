@@ -35,7 +35,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 20px;
       overflow: auto;
       border-radius: 10px;
-      transition: background-color 0.5s;
+      box-shadow: 0 0 15px #00f, 0 0 30px #00f, 0 0 45px #00f;
+      transition: background-color 0.5s, box-shadow 0.5s;
     }
 
     table {
@@ -112,7 +113,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
         lyricsCell.style.display = 'block';
       } else {
-        lyricsCell.style.display = 'none';
+        lyricsCell.style display = 'none';
       }
     }
 
@@ -166,4 +167,3 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
-
