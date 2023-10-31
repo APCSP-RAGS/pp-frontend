@@ -34,33 +34,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 20px;
       overflow: auto;
       border-radius: 10px;
-      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0; /* Default ring light effect */
-      animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
+      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
       transition: background-color 0.5s, box-shadow 0.5s;
-    }
-
-    @keyframes ring-light {
-      0%, 100% {
-        box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
-      }
-      25% {
-        box-shadow: 0 0 20px #f00, 0 0 35px #0f0, 0 0 45px #00f;
-      }
-      50% {
-        box-shadow: 0 0 25px #00f, 0 0 30px #f00, 0 0 45px #0f0;
-      }
-      75% {
-        box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
-      }
-    }
-
-    @keyframes music {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(10px);
-      }
+      display: block; /* Display the table */
     }
 
     table {
@@ -164,7 +140,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
-          throw an Error('Network response was not ok');
+          throw new Error('Network response was not ok');
         }
         return response.json();
       })
@@ -191,3 +167,4 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
+
