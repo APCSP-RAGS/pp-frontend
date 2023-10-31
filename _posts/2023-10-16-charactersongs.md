@@ -177,7 +177,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       };
 
       // Replace with the correct URL of your backend API
-      const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/songs/";
+      const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
 
       // Send data to the backend using a POST request
       fetch(apiUrl, {
