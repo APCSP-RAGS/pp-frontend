@@ -1,4 +1,4 @@
-import { Layer } from './classes/Layer.js'
+import { Layer } from '/pp-frontend/classes/Layer.js'
 export class Tumbleweed extends Layer {
     constructor(image, speedRatio, SPRITE_FRAMES, canvasWidth) {
         super(image, speedRatio);
@@ -9,7 +9,7 @@ export class Tumbleweed extends Layer {
         this.tumbleweedX = canvasWidth; // Initialize the dog's x position to the right edge of the canvas
     }
 
-    update(canvasWidth) {
+    update(canvasWidth, tumbleweedCanvas) {
         if (this.frameY == 2) {
             this.tumbleweedX -= this.speed;  // Move the dog to the left
             // Check if the dog has moved off the left edge of the canvas
@@ -26,7 +26,7 @@ export class Tumbleweed extends Layer {
     }
 
     // Draw dog object
-    draw(SPRITE_WIDTH, SPRITE_HEIGHT, SPRITE_SCALE, canvasHeight) {
+    draw(SPRITE_WIDTH, SPRITE_HEIGHT, SPRITE_SCALE, canvasHeight, tumbleweedCanvas, tumbleweedCtx) {
         // Set fixed dimensions and position for the dogCanvas
         tumbleweedCanvas.width = SPRITE_WIDTH * SPRITE_SCALE;
         tumbleweedCanvas.height = SPRITE_HEIGHT * SPRITE_SCALE;

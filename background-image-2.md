@@ -1,8 +1,8 @@
 ---
 layout: base
 title: Alien World - Dog and Background
-image: /images/desert.jpg
-sprite: /images/Tumbleweed-2.webp
+image: /images/desert.JPG
+sprite: /images/tumbleweed.png
 ---
 
 <!-- Liquid code, run by Jekyll, used to define location of asset(s) -->
@@ -45,8 +45,8 @@ sprite: /images/Tumbleweed-2.webp
 </div>
 
 <script type="module">
-import { Layer } from '../pp-frontend/classes/Layer.js';
-import { Tumbleweed } from '../pp-frontend/classes/Tumbleweed.js';
+import { Layer } from '/pp-frontend/classes/Layer.js';
+import { Tumbleweed } from '/pp-frontend/classes/Tumbleweed.js';
 
 /* Background part of Game
  * scrolling 
@@ -82,11 +82,11 @@ backgroundImg.onload = function () {
     const canvasWidth = maxWidth;
     const canvasHeight = canvasWidth / ASPECT_RATIO;  // height is oriented by width
     const canvasLeft = 0; // Start image from the left edge horizontally
-    const canvasTop = (maxHeight - canvasHeight) / 2;  // center image vertically
+    const canvasTop = ((maxHeight - canvasHeight) / 2) + 500;  // center image vertically
 
     // Set Style properties for the background canvas
-    canvas.width = WIDTH / ADJUST;
-    canvas.height = HEIGHT / ADJUST;
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
     canvas.style.width = `${canvasWidth}px`;
     canvas.style.height = `${canvasHeight}px`;
     canvas.style.position = 'absolute';
@@ -94,13 +94,13 @@ backgroundImg.onload = function () {
     canvas.style.top = `${canvasTop}px`;
 
     // Game speed is a common game variable
-    var gameSpeed = 2;
+    var gameSpeed = 0;
 
     // Setup Dog sprite constraints
-    const SPRITE_WIDTH = 160;  // matches sprite pixel width
-    const SPRITE_HEIGHT = 144; // matches sprite pixel height
-    const SPRITE_FRAMES = 48;  // matches number of frames per sprite row; this code assumes each row is the same
-    const SPRITE_SCALE = 1;  // controls the size of the sprite on the canvas
+    const SPRITE_WIDTH = 1024;  // matches sprite pixel width
+    const SPRITE_HEIGHT = 31; // matches sprite pixel height
+    const SPRITE_FRAMES = 24;  // matches number of frames per sprite row; this code assumes each row is the same
+    const SPRITE_SCALE = 5;  // controls the size of the sprite on the canvas
 
 
     // Background object
@@ -115,10 +115,11 @@ backgroundImg.onload = function () {
         backgroundObj.update();
         backgroundObj.draw(ctx);
 
-        tumbleweedObj.update(canvasWidth);
-        tumbleweedObj.draw(SPRITE_WIDTH, SPRITE_HEIGHT, SPRITE_SCALE, canvasHeight);
-
-        requestAnimationFrame(animation);  // cycle animation, recursion
+        tumbleweedObj.update(canvasWidth, tumbleweedCanvas);
+        tumbleweedObj.draw(SPRITE_WIDTH, SPRITE_HEIGHT, SPRITE_SCALE, canvasHeight, tumbleweedCanvas, tumbleweedCtx);
+        setTimeout(function() {
+            requestAnimationFrame(animation);
+        }, 250);
     }
 
     // Start animation process
