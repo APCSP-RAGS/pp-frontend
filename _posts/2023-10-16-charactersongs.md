@@ -591,7 +591,6 @@ table th, table td {
 </a>
 <button onclick="toggleAmbientMode()" class="ambient-mode-button">Toggle Ambient Mode</button>
 
-<button onclick="toggleLyrics(this.parentNode.parentNode)" class="toggle-lyrics-button">Toggle Lyrics</button>
 
 </body>
 </html>
