@@ -108,6 +108,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
   </style>
 </head>
+<a href="../">
+    <h1 style="font-size: 20; left: 2%; top: 1%; position: fixed;">>>Back</h1>
+</a>
 <body class="hacker-theme">
   <div class="container">
     <div class="table-container">
