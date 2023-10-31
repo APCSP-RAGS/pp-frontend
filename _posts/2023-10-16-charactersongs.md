@@ -159,7 +159,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     // Fetch data from the API
-    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/songs/";
+    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
 
     fetch(apiUrl)
       .then(response => {
