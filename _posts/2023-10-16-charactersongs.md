@@ -5,9 +5,13 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
+<!DOCTYPE html>
 <html>
+
 <head>
   <style>
+    /* Style for the table and other styles... */
+
     /* Style for the table */
     body {
       background-color: #000;
@@ -40,17 +44,31 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     @keyframes ring-light {
-      0%, 100% {
+      0%,
+      100% {
         box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
       }
+
       25% {
         box-shadow: 0 0 20px #f00, 0 0 35px #0f0, 0 0 45px #00f;
       }
+
       50% {
         box-shadow: 0 0 25px #00f, 0 0 30px #f00, 0 0 45px #0f0;
       }
+
       75% {
         box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
+      }
+    }
+
+    @keyframes music {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(10px);
       }
     }
 
@@ -68,7 +86,8 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       white-space: pre-line;
     }
 
-    table th, table td {
+    table th,
+    table td {
       border: 1px solid #333;
       padding: 8px;
       text-align: left;
@@ -97,9 +116,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     .ambient-mode {
       background-color: #212121;
     }
-
   </style>
 </head>
+
 <body class="hacker-theme">
   <div class="container">
     <div class="table-container">
@@ -133,8 +152,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     <input type="text" id="artist" name="artist" required><br><br>
 
     <label for="genre">Genre:</label>
-    <input type="text" id="genre" name="genre" required><br><br>
-
+    <input type="text" id="genre" name="genre" required><br
     <label for="lyrics">Lyrics:</label>
     <textarea id="lyrics" name="lyrics" rows="4" cols="50" required></textarea><br><br>
 
@@ -143,9 +161,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
   <script>
     // Function to toggle lyrics visibility...
-
+    
     // Function to toggle ambient mode...
-
+    
     // Function to submit data to the backend
     function submitData() {
       const character = document.getElementById("character").value;
