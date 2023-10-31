@@ -191,5 +191,3 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
-
-
