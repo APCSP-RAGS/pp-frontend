@@ -5,6 +5,7 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
+
 <html>
 <head>
   <style>
@@ -167,4 +168,3 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
-
