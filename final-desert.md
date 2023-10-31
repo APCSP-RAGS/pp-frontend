@@ -1,7 +1,7 @@
 ---
 layout: base
 title: The Desert
-image: /pp-frontend/images/desert.JPG
+image: /images/desert.jpg
 character: /images/tumbleweed.png
 player: /images/walter.gif
 ---
