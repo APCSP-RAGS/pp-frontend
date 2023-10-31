@@ -5,7 +5,6 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
-
 <html>
 <head>
   <style>
@@ -36,50 +35,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       overflow: auto;
       border-radius: 10px;
       box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0; /* Ring light effect */
-      animation: ring-light-dance 5s linear infinite, music 1s linear alternate, rgb-dance 5s linear infinite;
       transition: background-color 0.5s, box-shadow 0.5s;
-    }
-
-    @keyframes ring-light-dance {
-      0%, 100% {
-        box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
-      }
-      25% {
-        box-shadow: 0 0 20px #f00, 0 0 35px #0f0, 0 0 45px #00f;
-      }
-      50% {
-        box-shadow: 0 0 25px #00f, 0 0 30px #f00, 0 0 45px #0f0;
-      }
-      75% {
-        box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
-      }
-    }
-
-    @keyframes music {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(10px);
-      }
-    }
-
-    @keyframes rgb-dance {
-      0% {
-        background-color: #f00;
-      }
-      25% {
-        background-color: #0f0;
-      }
-      50% {
-        background-color: #00f;
-      }
-      75% {
-        background-color: #f0f;
-      }
-      100% {
-        background-color: #0ff;
-      }
     }
 
     table {
@@ -154,7 +110,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     function toggleLyrics(row) {
       const lyricsCell = row.querySelector('.lyrics');
       if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
-        lyricsCell.style display = 'block';
+        lyricsCell.style.display = 'block';
       } else {
         lyricsCell.style.display = 'none';
       }
@@ -183,7 +139,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw an Error('Network response was not ok');
         }
         return response.json();
       })
