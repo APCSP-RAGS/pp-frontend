@@ -54,6 +54,18 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
     }
 
+<<<<<<< HEAD
+=======
+    @keyframes music {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(10px);
+      }
+    }
+
+>>>>>>> 6f56461 (small)
     table {
       width: 100%;
       border-collapse: collapse;
@@ -100,6 +112,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
   </style>
 </head>
+<a href="../">
+    <h1 style="font-size: 20; left: 2%; top: 1%; position: fixed;">>>Back</h1>
+</a>
 <body class="hacker-theme">
   <div class="container">
     <div class="table-container">
@@ -122,67 +137,66 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     </div>
   </div>
 
-  <form id="inputForm" class="hacker-theme">
-    <label for="character">Character:</label>
-    <input type="text" id="character" name="character" required><br><br>
-
-    <label for="songName">Song Name:</label>
-    <input type="text" id="songName" name="songName" required><br><br>
-
-    <label for="artist">Artist:</label>
-    <input type="text" id="artist" name="artist" required><br><br>
-
-    <label for="genre">Genre:</label>
-    <input type="text" id="genre" name="genre" required><br><br>
-
-    <label for="lyrics">Lyrics:</label>
-    <textarea id="lyrics" name="lyrics" rows="4" cols="50" required></textarea><br><br>
-
-    <button type="button" onclick="submitData()">Submit Data</button>
-  </form>
-
   <script>
-    // Function to toggle lyrics visibility...
+    // Function to toggle lyrics visibility
+    function toggleLyrics(row) {
+      const lyricsCell = row.querySelector('.lyrics');
+      if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
+        lyricsCell.style.display = 'block';
+      } else {
+        lyricsCell.style.display = 'none';
+      }
+    }
 
-    // Function to toggle ambient mode...
+    // Function to toggle ambient mode
+    function toggleAmbientMode() {
+      const body = document.body;
+      const container = document.querySelector('.container');
+      const tableContainer = document.querySelector('.table-container');
 
-    // Function to submit data to the backend
-    function submitData() {
-      const character = document.getElementById("character").value;
-      const songName = document.getElementById("songName").value;
-      const artist = document.getElementById("artist").value;
-      const genre = document.getElementById("genre").value;
-      const lyrics = document.getElementById("lyrics").value;
+      if (body.classList.contains('ambient-mode')) {
+        body.classList.remove('ambient-mode');
+        container.classList.remove('ambient-mode');
+        tableContainer.classList.remove('ambient-mode');
+      } else {
+        body.classList.add('ambient-mode');
+        container.classList.add('ambient-mode');
+        tableContainer.classList.add('ambient-mode');
+      }
+    }
 
-      const data = {
-        character: character,
-        songName: songName,
-        artist: artist,
-        genre: genre,
-        lyrics: lyrics
-      };
+    // Fetch data from the API
+    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
 
-      // Replace with the correct URL of your backend API
-      const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
-
-      // Send data to the backend using a POST request
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+            }
+        return response.json();
       })
-      .then(response => response.json())
-      .then(result => {
-        console.log('Data sent successfully:', result);
-        // You can also update the table with the new data if needed
+      .then(data => {
+        const resultContainer = document.getElementById("result");
+
+        data.forEach(Song => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${Song.character}</td>
+            <td>${Song.song_name}</td>
+            <td>${Song.artist}</td>
+            <td>${Song.genre}</td>
+            <td class="lyrics">${Song.lyrics}</td>
+            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+          `;
+          resultContainer.appendChild(row);
+        });
       })
       .catch(error => {
-        console.error('Error sending data:', error);
+        console.error('Error fetching data:', error);
       });
-    }
   </script>
+  <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
+
 
