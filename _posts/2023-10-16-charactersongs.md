@@ -8,8 +8,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 <html>
 <head>
   <style>
-    /* Style for the table and other styles... */
-
     /* Style for the table */
     body {
       background-color: #000;
@@ -53,15 +51,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
       75% {
         box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
-      }
-    }
-
-    @keyframes music {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(10px);
       }
     }
 
@@ -140,7 +129,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     <label for="songName">Song Name:</label>
     <input type="text" id="songName" name="songName" required><br><br>
 
-    <label for "artist">Artist:</label>
+    <label for="artist">Artist:</label>
     <input type="text" id="artist" name="artist" required><br><br>
 
     <label for="genre">Genre:</label>
@@ -154,9 +143,9 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
   <script>
     // Function to toggle lyrics visibility...
-    
+
     // Function to toggle ambient mode...
-    
+
     // Function to submit data to the backend
     function submitData() {
       const character = document.getElementById("character").value;
@@ -196,3 +185,4 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
   </script>
 </body>
 </html>
+
