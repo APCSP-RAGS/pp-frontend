@@ -4,7 +4,7 @@ title: The Desert
 image: /images/desert.jpg
 character: /images/tumbleweed.png
 player: /images/walter.png
-interactive: /images/jesse.png
+interactive: /images/jesse2.png
 ---
 {% assign backgroundFile = site.baseurl | append: page.image %}
 {% assign characterImage = site.baseurl | append: page.character %}
