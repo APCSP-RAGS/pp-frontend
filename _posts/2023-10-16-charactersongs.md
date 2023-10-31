@@ -165,9 +165,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       const genre = document.getElementById("genre").value;
       const lyrics = document.getElementById("lyrics").value;
 
-
-
-
       const data = {
         character: character,
         songName: songName,
