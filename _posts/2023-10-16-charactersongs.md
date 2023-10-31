@@ -5,13 +5,9 @@ description: Uses GET requests to retrieve data from a custom API using SQLite a
 permalink: /data/songs
 tags: [javascript, fetch, dom, getElementID, appendChild]
 ---
-<!DOCTYPE html>
 <html>
-
 <head>
   <style>
-    /* Style for the table and other styles... */
-
     /* Style for the table */
     body {
       background-color: #000;
@@ -44,34 +40,32 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
 
     @keyframes ring-light {
-      0%,
-      100% {
+      0%, 100% {
         box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
       }
-
       25% {
         box-shadow: 0 0 20px #f00, 0 0 35px #0f0, 0 0 45px #00f;
       }
-
       50% {
         box-shadow: 0 0 25px #00f, 0 0 30px #f00, 0 0 45px #0f0;
       }
-
       75% {
         box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
       }
     }
 
+<<<<<<< HEAD
+=======
     @keyframes music {
       0% {
         transform: translateX(0);
       }
-
       100% {
         transform: translateX(10px);
       }
     }
 
+>>>>>>> 6f56461 (small)
     table {
       width: 100%;
       border-collapse: collapse;
@@ -86,8 +80,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       white-space: pre-line;
     }
 
-    table th,
-    table td {
+    table th, table td {
       border: 1px solid #333;
       padding: 8px;
       text-align: left;
@@ -116,9 +109,12 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     .ambient-mode {
       background-color: #212121;
     }
+
   </style>
 </head>
-
+<a href="../">
+    <h1 style="font-size: 20; left: 2%; top: 1%; position: fixed;">>>Back</h1>
+</a>
 <body class="hacker-theme">
   <div class="container">
     <div class="table-container">
@@ -141,66 +137,66 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     </div>
   </div>
 
-  <form id="inputForm" class="hacker-theme">
-    <label for="character">Character:</label>
-    <input type="text" id="character" name="character" required><br><br>
-
-    <label for="songName">Song Name:</label>
-    <input type="text" id="songName" name="songName" required><br><br>
-
-    <label for="artist">Artist:</label>
-    <input type="text" id="artist" name="artist" required><br><br>
-
-    <label for="genre">Genre:</label>
-    <input type="text" id="genre" name="genre" required><br
-    <label for="lyrics">Lyrics:</label>
-    <textarea id="lyrics" name="lyrics" rows="4" cols="50" required></textarea><br><br>
-
-    <button type="button" onclick="submitData()">Submit Data</button>
-  </form>
-
   <script>
-    // Function to toggle lyrics visibility...
-    
-    // Function to toggle ambient mode...
-    
-    // Function to submit data to the backend
-    function submitData() {
-      const character = document.getElementById("character").value;
-      const songName = document.getElementById("songName").value;
-      const artist = document.getElementById("artist").value;
-      const genre = document.getElementById("genre").value;
-      const lyrics = document.getElementById("lyrics").value;
+    // Function to toggle lyrics visibility
+    function toggleLyrics(row) {
+      const lyricsCell = row.querySelector('.lyrics');
+      if (lyricsCell.style.display === 'none' || lyricsCell.style.display === '') {
+        lyricsCell.style.display = 'block';
+      } else {
+        lyricsCell.style.display = 'none';
+      }
+    }
 
-      const data = {
-        character: character,
-        songName: songName,
-        artist: artist,
-        genre: genre,
-        lyrics: lyrics
-      };
+    // Function to toggle ambient mode
+    function toggleAmbientMode() {
+      const body = document.body;
+      const container = document.querySelector('.container');
+      const tableContainer = document.querySelector('.table-container');
 
-      // Replace with the correct URL of your backend API
-      const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+      if (body.classList.contains('ambient-mode')) {
+        body.classList.remove('ambient-mode');
+        container.classList.remove('ambient-mode');
+        tableContainer.classList.remove('ambient-mode');
+      } else {
+        body.classList.add('ambient-mode');
+        container.classList.add('ambient-mode');
+        tableContainer.classList.add('ambient-mode');
+      }
+    }
 
-      // Send data to the backend using a POST request
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+    // Fetch data from the API
+    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+            }
+        return response.json();
       })
-      .then(response => response.json())
-      .then(result => {
-        console.log('Data sent successfully:', result);
-        // You can also update the table with the new data if needed
+      .then(data => {
+        const resultContainer = document.getElementById("result");
+
+        data.forEach(Song => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${Song.character}</td>
+            <td>${Song.song_name}</td>
+            <td>${Song.artist}</td>
+            <td>${Song.genre}</td>
+            <td class="lyrics">${Song.lyrics}</td>
+            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+          `;
+          resultContainer.appendChild(row);
+        });
       })
       .catch(error => {
-        console.error('Error sending data:', error);
+        console.error('Error fetching data:', error);
       });
-    }
   </script>
+  <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
+
 
