@@ -14,7 +14,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       background-color: #000;
       color: #0f0;
       font-family: 'Courier New', monospace;
-      overflow: hidden;
+      overflow: auto;
       margin: 0;
       transition: background-color 0.5s;
     }
@@ -35,9 +35,33 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       padding: 20px;
       overflow: auto;
       border-radius: 10px;
-      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
+      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0; /* Default ring light effect */
+      animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
       transition: background-color 0.5s, box-shadow 0.5s;
-      display: block; /* Display the table */
+    }
+
+    @keyframes ring-light {
+      0%, 100% {
+        box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
+      }
+      25% {
+        box-shadow: 0 0 20px #f00, 0 0 35px #0f0, 0 0 45px #00f;
+      }
+      50% {
+        box-shadow: 0 0 25px #00f, 0 0 30px #f00, 0 0 45px #0f0;
+      }
+      75% {
+        box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
+      }
+    }
+
+    @keyframes music {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(10px);
+      }
     }
 
     table {
