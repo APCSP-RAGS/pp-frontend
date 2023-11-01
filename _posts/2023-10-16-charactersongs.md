@@ -39,6 +39,20 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       transition: background-color 0.5s, box-shadow 0.5s;
     }
 
+      .toggle-lyrics-button {
+    background-color: #0f0;
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .toggle-lyrics-button:hover {
+    background-color: #00f;
+  }
+
     @keyframes ring-light {
       0%, 100% {
         box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
