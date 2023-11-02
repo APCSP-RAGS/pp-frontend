@@ -285,7 +285,11 @@ table th, table td {
     }
     fetchSongs()
   </script>
-  <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
+  <a href="../">
+  <h1 style="font-size: 20px; left: 2%; top: 1%; position: fixed;">>>Back</h1>
+</a>
+<button onclick="toggleAmbientMode()" class="ambient-mode-button">Toggle Ambient Mode</button>
+
 </body>
 </html>
 
