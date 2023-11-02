@@ -235,14 +235,14 @@ table th, table td {
       const genre = document.getElementById("genre").value;
       const character = document.getElementById("character").value;
 
-      const apiUrl2 = `https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/create`
+      const apiUrl2 = `localhost:8069/api/song/create`
       var body = {
         "song_name": songName,
         "artist": artistName,
         "genre": genre,
         "character": character,
       }
-      fetch("https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/create", {method:'POST', body: JSON.stringify(body), headers: {
+      fetch("localhost:8069/api/song/create", {method:'POST', body: JSON.stringify(body), headers: {
       'Content-type': 'application/json',
       }})
         .then(response => response.json())  
@@ -254,7 +254,7 @@ table th, table td {
 
     // Fetch data from the API
     function fetchSongs() {
-      const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+      const apiUrl = "localhost:8069/api/song/";
 
       fetch(apiUrl)
         .then(response => {
