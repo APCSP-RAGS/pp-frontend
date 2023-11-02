@@ -13,7 +13,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       background-color: #000;
       color: #0f0;
       font-family: 'Courier New', monospace;
-      overflow: hidden;
+      overflow-y: scroll;
       margin: 0;
       transition: background-color 0.5s;
     }
@@ -24,7 +24,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: auto;
+      overflow-y: scroll;
       padding: 10px;
       transition: background-color 0.5s;
     }
@@ -32,7 +32,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     .table-container {
       background-color: #000;
       padding: 20px;
-      overflow: auto;
+      overflow-y: scroll;
       border-radius: 10px;
       box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
       animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
@@ -140,7 +140,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         <label for="genre">Genre:</label>
         <input type="text" id="genre" placeholder="Enter genre">
 
-        <label for="character">Character:</label>
+        <label for="character">Person:</label>
         <input type="text" id="character" placeholder="Enter character">
         
         <button onclick="addSong()">Add</button>
