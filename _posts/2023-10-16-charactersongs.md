@@ -9,117 +9,132 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 <head>
   <style>
     /* Style for the table */
-    body {
-      background-color: #000;
-      color: #0f0;
-      font-family: 'Courier New', monospace;
-      overflow-y: scroll;
-      margin: 0;
-      transition: background-color 0.5s;
-    }
+body {
+  background-color: #000;
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  overflow-y: scroll;
+  margin: 0;
+  transition: background-color 0.5s;
+}
 
-    /* Center the table horizontally */
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow-y: scroll;
-      padding: 10px;
-      transition: background-color 0.5s;
-    }
+/* Center the table horizontally */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 10px;
+  transition: background-color 0.5s;
+}
 
-    .table-container {
-      background-color: #000;
-      padding: 20px;
-      overflow-y: scroll;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
-      animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
-      transition: background-color 0.5s, box-shadow 0.5s;
-    }
+.table-container {
+  background-color: #000;
+  padding: 20px;
+  overflow-y: scroll;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
+  animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
+  transition: background-color 0.5s, box-shadow 0.5s;
+}
 
-      .toggle-lyrics-button {
-    background-color: #0f0;
-    color: #000;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.toggle-lyrics-button {
+  background-color: #0f0;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-lyrics-button:hover {
+  background-color: #00f;
+}
+
+/* New button style for Toggle Ambient Mode */
+.toggle-ambient-mode-button {
+  background-color: #0f0;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-ambient-mode-button:hover {
+  background-color: #00f;
+}
+
+@keyframes ring-light {
+  0%, 100% {
+    box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
   }
-
-  .toggle-lyrics-button:hover {
-    background-color: #00f;
+  25% {
+    box-shadow: 0 0 20px #f00, 0 0 35px #0f0, 0 0 45px #00f;
   }
+  50% {
+    box-shadow: 0 0 25px #00f, 0 0 30px #f00, 0 0 45px #0f0;
+  }
+  75% {
+    box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
+  }
+}
 
-    @keyframes ring-light {
-      0%, 100% {
-        box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
-      }
-      25% {
-        box-shadow: 0 0 20px #f00, 0 0 35px #0f0, 0 0 45px #00f;
-      }
-      50% {
-        box-shadow: 0 0 25px #00f, 0 0 30px #f00, 0 0 45px #0f0;
-      }
-      75% {
-        box-shadow: 0 0 20px #0f0, 0 0 35px #00f, 0 0 45px #f00;
-      }
-    }
+@keyframes music {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
 
-    @keyframes music {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(10px);
-      }
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: pre-line;
+  border-radius: 10px;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      white-space: pre-line;
-      border-radius: 10px;
-    }
+table th {
+  background-color: #000;
+  color: #0f0;
+  font-weight: bold;
+  white-space: pre-line;
+}
 
-    table th {
-      background-color: #000;
-      color: #0f0;
-      font-weight: bold;
-      white-space: pre-line;
-    }
+table th, table td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: left;
+  border-radius: 10px;
+  white-space: pre-line;
+}
 
-    table th, table td {
-      border: 1px solid #333;
-      padding: 8px;
-      text-align: left;
-      border-radius: 10px;
-      white-space: pre-line;
-    }
+.lyrics {
+  display: none;
+  max-height: 200px;
+  overflow: auto;
+  border-radius: 10px;
+}
 
-    .lyrics {
-      display: none;
-      max-height: 200px;
-      overflow: auto;
-      border-radius: 10px;
-    }
+/* Add a hacker-inspired style */
+.hacker-theme {
+  background-color: #000;
+  color: #0f0;
+}
 
-    /* Add a hacker-inspired style */
-    .hacker-theme {
-      background-color: #000;
-      color: #0f0;
-    }
+.hacker-theme a {
+  color: #0f0;
+}
 
-    .hacker-theme a {
-      color: #0f0;
-    }
-
-    /* YouTube ambient mode style */
-    .ambient-mode {
-      background-color: #212121;
-    }
+/* YouTube ambient mode style */
+.ambient-mode {
+  background-color: #212121;
+}
 
   </style>
 </head>
