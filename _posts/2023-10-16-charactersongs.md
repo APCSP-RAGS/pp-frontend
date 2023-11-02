@@ -175,7 +175,7 @@ table th, table td {
         <input type="text" id="genre" placeholder="Enter genre">
 
         <label for="character">Person:</label>
-        <input type="text" id="character" placeholder="Enter character">
+        <input type="text" id="character" placeholder="Enter name">
         
         <button onclick="addSong()">Add</button>
       </div>
