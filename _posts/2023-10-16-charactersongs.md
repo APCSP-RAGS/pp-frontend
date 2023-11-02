@@ -136,18 +136,23 @@ table th, table td {
   background-color: #212121;
 }
 
-.toggle-ambient-mode-button {
-  background-color: #0f0;
-  color: #000;
+.ambient-mode-button {
+  background-color: #000;
+  color: #0f0;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
   position: fixed;
-  font-size: 20px;
-  left: 2%;
+  left: 60px;
   top: 1%;
+  z-index: 1;
+}
+
+.ambient-mode-button:hover {
+  background-color: #0f0;
+  color: #000;
 }
 
   </style>
