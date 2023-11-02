@@ -68,8 +68,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
     }
 
-<<<<<<< HEAD
-=======
     @keyframes music {
       0% {
         transform: translateX(0);
@@ -79,7 +77,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
     }
 
->>>>>>> 6f56461 (small)
     table {
       width: 100%;
       border-collapse: collapse;
