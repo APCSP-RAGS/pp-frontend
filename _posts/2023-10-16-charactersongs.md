@@ -290,6 +290,7 @@ table th, table td {
 </a>
 <button onclick="toggleAmbientMode()" class="ambient-mode-button">Toggle Ambient Mode</button>
 
+
 </body>
 </html>
 
