@@ -145,7 +145,7 @@ table th, table td {
   cursor: pointer;
   transition: background-color 0.3s;
   position: fixed;
-  left: 60px;
+  left: 120px;
   top: 1%;
   z-index: 1;
 }
