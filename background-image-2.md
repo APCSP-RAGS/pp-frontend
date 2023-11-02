@@ -1,112 +1,112 @@
 ---
 layout: base
-title: Alien World - Dog and Background
-image: /images/desert.JPG
-sprite: /images/tumbleweed.png
+title: The Desert
+image: /images/desert.jpg
+character: /images/tumbleweed.png
+player: /images/walter.png
 ---
-
-<!-- Liquid code, run by Jekyll, used to define location of asset(s) -->
 {% assign backgroundFile = site.baseurl | append: page.image %}
-{% assign spriteImage = site.baseurl | append: page.sprite %}
-
-<style>
-    #controls {
-        position: relative;
-        z-index: 2; /* Ensure the controls are on top of the dog canvas */
-    }
-
-    /* Style the dog canvas to be the same size as the viewport */
-    #tumbleweedCanvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0; /* Place it below the background */
-    }
-</style>
-
-<!-- Prepare DOM elements -->
-<!-- Wrap both the dog canvas and controls in a container div -->
-<div id="canvasContainer">
-    <div id="controls"> <!-- Controls -->
-        <button id="toggleCanvasEffect">Invert</button>
-        <input type="radio" name="animation" id="idle">
-        <label for="idle">Idle</label>
-        <input type="radio" name="animation" id="barking">
-        <label for="barking">Barking</label>
-        <input type="radio" name="animation" id="walking" checked>
-        <label for="walking">Walking</label>
-    </div>
-    <canvas id="backgroundCanvas">
-        <img id="backgroundImage" src="{{backgroundFile}}">
-    </canvas>
-
-</div>
-
-<script type="module">
-import { Layer } from '/pp-frontend/classes/Layer.js';
-import { Tumbleweed } from '/pp-frontend/classes/Tumbleweed.js';
-
-/* Background part of Game
- * scrolling 
-*/
-// Prepare Background Image
-const backgroundImg = new Image();
-backgroundImg.src = '{{backgroundFile}}';  // Jekyll/Liquid puts filename here
-
-// Prepare Sprite Image
-const tumbleweedImg = new Image();
-tumbleweedImg.src = '{{spriteImage}}';
-
-// Prepare Canvas
-const canvas = document.getElementById("backgroundCanvas");
-const ctx = canvas.getContext('2d');
-
-// Dog animation part
-const tumbleweedCanvas = document.createElement("canvas");
-const tumbleweedCtx = tumbleweedCanvas.getContext("2d");
-
-// Prepare Window extents related to viewport
-const maxWidth = window.innerWidth;
-const maxHeight = window.innerHeight;
-
-backgroundImg.onload = function () {
-    // Setup background constants from background image
-    const WIDTH = backgroundImg.width;  // Image() width (meta data)
-    const HEIGHT = backgroundImg.height; // Image() height
-    const ASPECT_RATIO = WIDTH / HEIGHT;
-    const ADJUST = 1.42 // visual layer adjust, use "1"" for a perfect loop 
-
-    // Set Dimensions to match the image width
-    const canvasWidth = maxWidth;
-    const canvasHeight = canvasWidth / ASPECT_RATIO;  // height is oriented by width
-    const canvasLeft = 0; // Start image from the left edge horizontally
-    const canvasTop = ((maxHeight - canvasHeight) / 2) + 500;  // center image vertically
-
-    // Set Style properties for the background canvas
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
-    canvas.style.width = `${canvasWidth}px`;
-    canvas.style.height = `${canvasHeight}px`;
-    canvas.style.position = 'absolute';
-    canvas.style.left = `${canvasLeft}px`;
-    canvas.style.top = `${canvasTop}px`;
-
-    // Game speed is a common game variable
-    var gameSpeed = 0;
-
-    // Setup Dog sprite constraints
-    const SPRITE_WIDTH = 1024;  // matches sprite pixel width
-    const SPRITE_HEIGHT = 31; // matches sprite pixel height
-    const SPRITE_FRAMES = 24;  // matches number of frames per sprite row; this code assumes each row is the same
-    const SPRITE_SCALE = 5;  // controls the size of the sprite on the canvas
-
-
-    // Background object
-    var backgroundObj = new Layer(backgroundImg, 0.2, WIDTH, HEIGHT, gameSpeed);
-    var tumbleweedObj = new Tumbleweed(tumbleweedImg, 0.5, SPRITE_FRAMES, canvasWidth);
-
+{% assign characterImage = site.baseurl | append: page.character %}
+{% assign playerImage = site.baseurl | append: page.player %}
+<html>
+<head>
+    <style>
+        canvas {
+            border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="gameCanvas"></canvas>
+        <script>
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+            // Get window width and height
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Character (Tumbleweed)
+            const character = {
+                x: 50,
+                y: canvas.height - 50,
+                width: 100,
+                height: 100,
+                rotation: 0, // Initial rotation angle in radians
+                speed: 2, // Speed of movement
+                rotationSpeed: Math.PI / 180, // Rotation speed in radians per frame
+            };
+            const characterImg = new Image();
+            characterImg.src = '{{characterImage}}'; // Load the character image
+            characterImg.onload = function () {
+                // Player
+                const player = {
+                    x: canvas.width - 50,
+                    y: canvas.height - 50,
+                    width: 200,
+                    height: 200,
+                    speed: 4, // Speed of movement
+                };
+                const playerImg = new Image();
+                playerImg.src = '{{playerImage}}'; // Load the player image
+                playerImg.onload = function () {
+                    function drawCharacter() {
+                        ctx.save(); // Save the current canvas state
+                        ctx.translate(character.x, character.y); // Translate to character's position
+                        ctx.rotate(character.rotation); // Rotate
+                        ctx.drawImage(characterImg, -character.width / 2, -character.height / 2, character.width, character.height); // Draw character
+                        ctx.restore(); // Restore the canvas state
+                    }
+                    function updateCharacter() {
+                        character.x += character.speed; // Move character horizontally
+                        character.rotation += character.rotationSpeed; // Rotate character
+                        // Wrap character to the other side of the canvas when it goes off-screen
+                        if (character.x > canvas.width + character.width / 2) {
+                            character.x = -character.width / 2;
+                        }
+                    }
+                    function drawPlayer() {
+                        ctx.drawImage(playerImg, player.x - player.width / 2, player.y - player.height / 2, player.width, player.height); // Draw player
+                    }
+                    function updatePlayer() {
+                        // Move player horizontally based on input (a and d keys)
+                        if (keys['a']) {
+                            player.x -= player.speed;
+                        }
+                        if (keys['d']) {
+                            player.x += player.speed;
+                        }
+                        // Wrap player to the other side of the canvas when it goes off-screen
+                        if (player.x > canvas.width + player.width / 2) {
+                            player.x = -player.width / 2;
+                        }
+                    }
+                    const keys = {}; // Object to track key states
+                    document.addEventListener('keydown', function (event) {
+                        keys[event.key] = true;
+                    });
+                    document.addEventListener('keyup', function (event) {
+                        keys[event.key] = false;
+                    });
+                    function drawBackground() {
+                        const backgroundImg = new Image();
+                        backgroundImg.src = '{{backgroundFile}}';
+                        backgroundImg.onload = function () {
+                            ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height); // Draw background image
+                        };
+                    }
+                    function gameLoop() {
+                        drawBackground();
+                        drawCharacter();
+                        updateCharacter();
+                        drawPlayer();
+                        updatePlayer();
+                        requestAnimationFrame(gameLoop); // Call the loop again
+                    }
+                    gameLoop(); // Start the game loop
+                };
+            };
+        </script>
+    </body>
+</html>
     // Append the dog canvas to the body
     document.body.appendChild(tumbleweedCanvas);
 
