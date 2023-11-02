@@ -136,6 +136,20 @@ table th, table td {
   background-color: #212121;
 }
 
+.toggle-ambient-mode-button {
+  background-color: #0f0;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: fixed;
+  font-size: 20px;
+  left: 2%;
+  top: 1%;
+}
+
   </style>
 </head>
 <a href="../">
