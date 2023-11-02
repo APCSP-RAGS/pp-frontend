@@ -140,13 +140,13 @@ table th, table td {
   background-color: #000;
   color: #0f0;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.3s;
   position: fixed;
-  left: 120px;
-  top: 1%;
+  left: 43%;
+  top: 90%;
   z-index: 1;
 }
 
