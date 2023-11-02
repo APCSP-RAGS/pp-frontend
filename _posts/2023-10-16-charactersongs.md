@@ -21,7 +21,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     /* Center the table horizontally */
     .container {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
       height: 100vh;
       overflow-y: scroll;
@@ -39,15 +39,19 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       transition: background-color 0.5s, box-shadow 0.5s;
     }
 
-    .input-container {
-      background-color: #000;
-      padding: 20px;
-      overflow: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
-      animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
-      transition: background-color 0.5s, box-shadow 0.5s;
-    }
+      .toggle-lyrics-button {
+    background-color: #0f0;
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .toggle-lyrics-button:hover {
+    background-color: #00f;
+  }
 
     @keyframes ring-light {
       0%, 100% {
@@ -117,21 +121,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       background-color: #212121;
     }
 
-    .toggle-lyrics-button {
-      background-color: #000;
-      color: #0f0;
-      border: 1px solid #0f0;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    }
-
-    .toggle-lyrics-button:hover {
-      background-color: #0f0;
-      color: #000;
-      border-color: #000;
-    }
   </style>
 </head>
 <a href="../">
@@ -139,33 +128,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 </a>
 <body class="hacker-theme">
   <div class="container">
-    <!-- Input section for adding a new song -->
-    <div class="input-container">
-      <h2>Add a New Song</h2>
-      <div>
-        <label for="characterInput">Character:</label>
-        <input type="text" id="characterInput" placeholder="Enter Character">
-      </div>
-      <div>
-        <label for="songNameInput">Song Name:</label>
-        <input type="text" id="songNameInput" placeholder="Enter Song Name">
-      </div>
-      <div>
-        <label for="artistInput">Artist:</label>
-        <input type="text" id="artistInput" placeholder="Enter Artist">
-      </div>
-      <div>
-        <label for="genreInput">Genre:</label>
-        <input type="text" id="genreInput" placeholder="Enter Genre">
-      </div>
-      <div>
-        <label for="lyricsInput">Lyrics:</label>
-        <textarea id="lyricsInput" placeholder="Enter Lyrics"></textarea>
-      </div>
-      <button onclick="addSong()">Add Song</button>
-    </div>
-    
-    <!-- HTML table for displaying data -->
     <div class="table-container">
       <div class="add-container">
         <h2>Add a song</h2>
@@ -222,7 +184,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
       if (body.classList.contains('ambient-mode')) {
         body.classList.remove('ambient-mode');
-                body.classList.remove('ambient-mode');
         container.classList.remove('ambient-mode');
         tableContainer.classList.remove('ambient-mode');
       } else {
@@ -230,36 +191,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
         container.classList.add('ambient-mode');
         tableContainer.classList.add('ambient-mode');
       }
-    }
-
-    // Function to add a new song
-    function addSong() {
-      const characterInput = document.getElementById('characterInput');
-      const songNameInput = document.getElementById('songNameInput');
-      const artistInput = document.getElementById('artistInput');
-      const genreInput = document.getElementById('genreInput');
-      const lyricsInput = document.getElementById('lyricsInput');
-
-      const resultContainer = document.getElementById('result');
-
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-        <td>${characterInput.value}</td>
-        <td>${songNameInput.value}</td>
-        <td>${artistInput.value}</td>
-        <td>${genreInput.value}</td>
-        <td class="lyrics">${lyricsInput.value}</td>
-        <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
-      `;
-
-      resultContainer.appendChild(newRow);
-
-      // Clear input fields after adding the song
-      characterInput.value = '';
-      songNameInput.value = '';
-      artistInput.value = '';
-      genreInput.value = '';
-      lyricsInput.value = '';
     }
 
     function addSong() {
@@ -289,15 +220,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     function fetchSongs() {
       const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
 
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const resultContainer = document.getElementById('result');
       fetch(apiUrl)
         .then(response => {
           if (!response.ok) {
@@ -310,22 +232,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
           resultContainer.innerHTML = "";
 
-        data.forEach(Song => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${Song.character}</td>
-            <td>${Song.song_name}</td>
-            <td>${Song.artist}</td>
-            <td>${Song.genre}</td>
-            <td class="lyrics">${Song.lyrics}</td>
-            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
-          `;
-          resultContainer.appendChild(row);
-        });
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
           data.forEach(Song => {
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -345,7 +251,6 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     }
     fetchSongs()
   </script>
-
   <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
 </html>
