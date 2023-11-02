@@ -13,7 +13,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       background-color: #000;
       color: #0f0;
       font-family: 'Courier New', monospace;
-      overflow: hidden;
+      overflow-y: scroll;
       margin: 0;
       transition: background-color 0.5s;
     }
@@ -24,7 +24,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       flex-direction: column;
       align-items: center;
       height: 100vh;
-      overflow: auto;
+      overflow-y: scroll;
       padding: 10px;
       transition: background-color 0.5s;
     }
@@ -32,7 +32,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     .table-container {
       background-color: #000;
       padding: 20px;
-      overflow: auto;
+      overflow-y: scroll;
       border-radius: 10px;
       box-shadow: 0 0 15px #0f0, 0 0 30px #0f0, 0 0 45px #0f0;
       animation: ring-light 3s ease-in-out infinite, music 1s linear alternate;
@@ -167,7 +167,25 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
     
     <!-- HTML table for displaying data -->
     <div class="table-container">
+      <div class="add-container">
+        <h2>Add a song</h2>
+        <label for="songName">Song Name:</label>
+        <input type="text" id="songName" placeholder="Enter song name">
+
+        <label for="artistName">Artist Name:</label>
+        <input type="text" id="artistName" placeholder="Enter artist name">
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre">
+
+        <label for="character">Person:</label>
+        <input type="text" id="character" placeholder="Enter character">
+        
+        <button onclick="addSong()">Add</button>
+      </div>
+      <!-- HTML table for displaying data -->
       <table class="hacker-theme">
+        <h2>Songs</h2>
         <thead>
           <tr>
             <th>Character</th>
@@ -204,6 +222,7 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 
       if (body.classList.contains('ambient-mode')) {
         body.classList.remove('ambient-mode');
+                body.classList.remove('ambient-mode');
         container.classList.remove('ambient-mode');
         tableContainer.classList.remove('ambient-mode');
       } else {
@@ -243,8 +262,32 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       lyricsInput.value = '';
     }
 
+    function addSong() {
+      const songName = document.getElementById("songName").value;
+      const artistName = document.getElementById("artistName").value;
+      const genre = document.getElementById("genre").value;
+      const character = document.getElementById("character").value;
+
+      const apiUrl2 = `https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/create`
+      var body = {
+        "song_name": songName,
+        "artist": artistName,
+        "genre": genre,
+        "character": character,
+      }
+      fetch("https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/create", {method:'POST', body: JSON.stringify(body), headers: {
+      'Content-type': 'application/json',
+      }})
+        .then(response => response.json())  
+        .then(json => {
+          console.log(json)
+          fetchSongs()
+      })
+    }
+
     // Fetch data from the API
-    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+    function fetchSongs() {
+      const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
 
     fetch(apiUrl)
       .then(response => {
@@ -255,6 +298,17 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       })
       .then(data => {
         const resultContainer = document.getElementById('result');
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+              }
+          return response.json();
+        })
+        .then(data => {
+          const resultContainer = document.getElementById("result");
+
+          resultContainer.innerHTML = "";
 
         data.forEach(Song => {
           const row = document.createElement('tr');
@@ -272,6 +326,24 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       .catch(error => {
         console.error('Error fetching data:', error);
       });
+          data.forEach(Song => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${Song.character}</td>
+              <td>${Song.song_name}</td>
+              <td>${Song.artist}</td>
+              <td>${Song.genre}</td>
+              <td class="lyrics">${Song.lyrics}</td>
+              <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+            `;
+            resultContainer.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+    fetchSongs()
   </script>
 
   <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>

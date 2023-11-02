@@ -5,7 +5,7 @@ course: projects
 ---
 
 # Projects
-## Character Playlists
+## Song Sharer
 <a href="{{site.baseurl}}/data/songs"><img src="images/music-recommender.png"></a>
 
 &nbsp;
