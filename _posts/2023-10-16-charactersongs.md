@@ -132,8 +132,41 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
 <body class="hacker-theme">
   <div class="container">
     <div class="table-container">
+      <!-- <div class="search-container">
+        <h2>Search for a song</h2>
+        <label for="songName">Song Name:</label>
+        <input type="text" id="songName" placeholder="Enter song name">
+
+        <label for="artistName">Artist Name:</label>
+        <input type="text" id="artistName" placeholder="Enter artist name">
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre">
+
+        <label for="character">Character:</label>
+        <input type="text" id="character" placeholder="Enter character">
+        
+        <button onclick="searchSongs()">Search</button>
+      </div> -->
+      <div class="add-container">
+        <h2>Add a song</h2>
+        <label for="songName">Song Name:</label>
+        <input type="text" id="songName" placeholder="Enter song name">
+
+        <label for="artistName">Artist Name:</label>
+        <input type="text" id="artistName" placeholder="Enter artist name">
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre">
+
+        <label for="character">Character:</label>
+        <input type="text" id="character" placeholder="Enter character">
+        
+        <button onclick="addSong()">Add</button>
+      </div>
       <!-- HTML table for displaying data -->
       <table class="hacker-theme">
+        <h2>Songs</h2>
         <thead>
           <tr>
             <th>Character</th>
@@ -179,35 +212,100 @@ tags: [javascript, fetch, dom, getElementID, appendChild]
       }
     }
 
+    function addSong() {
+      const songName = document.getElementById("songName").value;
+      const artistName = document.getElementById("artistName").value;
+      const genre = document.getElementById("genre").value;
+      const character = document.getElementById("character").value;
+
+      const apiUrl = `https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/create`
+      body = {
+        "song_name": songName,
+        "artist": artistName,
+        "genre": genre,
+        "character": character,
+      }
+      fetch(apiUrl,{method:"POST", body:{body}, headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+      }})
+        .then(response => response.json())  
+        .then(json => {
+          console.log(json)
+          fetchSongs()
+          //document.getElementById("loginWrapper").style.backgroundImage = `url(${json.hdurl})`
+      })
+    }
+
+    // function searchSongs() {
+    //   const songName = document.getElementById("songName").value;
+    //   const artistName = document.getElementById("artistName").value;
+    //   const genre = document.getElementById("genre").value;
+    //   const character = document.getElementById("character").value;
+
+    //   // Construct the API URL with search parameters
+    //   const apiUrl = `https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song?song_name=${songName}&artist=${artistName}&genre=${genre}&character=${character}`;
+
+    //   fetch(apiUrl)
+    //     .then(response => {
+    //       if (!response.ok) {
+    //         throw new Error('Network response was not ok');
+    //       }
+    //       return response.json();
+    //     })
+    //     .then(data => {
+    //       const resultContainer = document.getElementById("result");
+    //       resultContainer.innerHTML = ''; // Clear previous search results
+
+    //       data.forEach(Song => {
+    //         const row = document.createElement("tr");
+    //         row.innerHTML = `
+    //           <td>${Song.character}</td>
+    //           <td>${Song.song_name}</td>
+    //           <td>${Song.artist}</td>
+    //           <td>${Song.genre}</td>
+    //           <td class="lyrics">${Song.lyrics}</td>
+    //           <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+    //         `;
+    //         resultContainer.appendChild(row);
+    //       });
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching data:', error);
+    //     });
+    // }
+
     // Fetch data from the API
-    const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
+    function fetchSongs() {
+      const apiUrl = "https://awsrags-flask.stu.nighthawkcodingsociety.com/api/song/";
 
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-            }
-        return response.json();
-      })
-      .then(data => {
-        const resultContainer = document.getElementById("result");
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+              }
+          return response.json();
+        })
+        .then(data => {
+          const resultContainer = document.getElementById("result");
 
-        data.forEach(Song => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${Song.character}</td>
-            <td>${Song.song_name}</td>
-            <td>${Song.artist}</td>
-            <td>${Song.genre}</td>
-            <td class="lyrics">${Song.lyrics}</td>
-            <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
-          `;
-          resultContainer.appendChild(row);
+          data.forEach(Song => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${Song.character}</td>
+              <td>${Song.song_name}</td>
+              <td>${Song.artist}</td>
+              <td>${Song.genre}</td>
+              <td class="lyrics">${Song.lyrics}</td>
+              <td><button onclick="toggleLyrics(this.parentNode.parentNode)">Toggle Lyrics</button></td>
+            `;
+            resultContainer.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
         });
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+    }
+    fetchSongs()
   </script>
   <button onclick="toggleAmbientMode()">Toggle Ambient Mode</button>
 </body>
